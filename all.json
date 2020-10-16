@@ -1,0 +1,37 @@
+{
+    "packages": {
+        "drupal/api_tools": {
+            "dev-8.x-1.x": {
+                "name": "drupal/api_tools",
+                "version": "dev-8.x-1.x",
+                "version_normalized": "dev-8.x-1.x",
+                "source": {
+                    "type": "git",
+                    "url": "https://github.com/druidfi/api_tools.git",
+                    "reference": "dd07d9565983a017f686605374a084455bb68237"
+                },
+                "dist": {
+                    "type": "zip",
+                    "url": "https://api.github.com/repos/druidfi/api_tools/zipball/dd07d9565983a017f686605374a084455bb68237",
+                    "reference": "dd07d9565983a017f686605374a084455bb68237",
+                    "shasum": ""
+                },
+                "require": {
+                    "league/uri": "~6.2"
+                },
+                "time": "2020-10-16T16:23:07+00:00",
+                "type": "drupal-module",
+                "license": [
+                    "GPL-2.0+"
+                ],
+                "keywords": [
+                    "Drupal"
+                ],
+                "support": {
+                    "source": "https://github.com/druidfi/api_tools/tree/8.x-1.x",
+                    "issues": "https://github.com/druidfi/api_tools/issues"
+                }
+            }
+        }
+    }
+}
