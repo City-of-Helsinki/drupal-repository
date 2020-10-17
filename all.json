@@ -1,5 +1,105 @@
 {
     "packages": {
+        "city-of-helsinki/drupal-base": {
+            "dev-master": {
+                "name": "City-of-Helsinki/drupal-base",
+                "version": "dev-master",
+                "version_normalized": "9999999-dev",
+                "source": {
+                    "type": "git",
+                    "url": "https://github.com/City-of-Helsinki/drupal-base.git",
+                    "reference": "b112bff1deefe5aa50a0dcaed326200b711e2d34"
+                },
+                "dist": {
+                    "type": "zip",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-base/zipball/b112bff1deefe5aa50a0dcaed326200b711e2d34",
+                    "reference": "b112bff1deefe5aa50a0dcaed326200b711e2d34",
+                    "shasum": ""
+                },
+                "require": {
+                    "composer/installers": "^1.9",
+                    "cweagans/composer-patches": "^1.6.7",
+                    "druidfi/omen": "^0.2.0",
+                    "drupal/core-composer-scaffold": "^9.0",
+                    "drupal/core-recommended": "^9.0",
+                    "drush/drush": "^10.3"
+                },
+                "conflict": {
+                    "drupal/drupal": "*"
+                },
+                "require-dev": {
+                    "drupal/core-dev": "^9.0"
+                },
+                "time": "2020-10-17T10:05:43+00:00",
+                "type": "project",
+                "extra": {
+                    "composer-exit-on-patch-failure": true,
+                    "drupal-scaffold": {
+                        "allowed-packages": [
+                            "drupal/core"
+                        ],
+                        "locations": {
+                            "web-root": "./public"
+                        },
+                        "file-mapping": {
+                            "[project-root]/.editorconfig": false
+                        }
+                    },
+                    "enable-patching": true,
+                    "installer-paths": {
+                        "public/core": [
+                            "type:drupal-core"
+                        ],
+                        "tools/{$name}": [
+                            "type:tools"
+                        ],
+                        "public/libraries/{$name}": [
+                            "type:drupal-library"
+                        ],
+                        "public/modules/contrib/{$name}": [
+                            "type:drupal-module"
+                        ],
+                        "public/modules/custom/{$name}": [
+                            "type:drupal-module-custom"
+                        ],
+                        "public/profiles/{$name}": [
+                            "type:drupal-profile"
+                        ],
+                        "public/themes/contrib/{$name}": [
+                            "type:drupal-theme"
+                        ],
+                        "public/themes/custom/{$name}": [
+                            "type:drupal-theme-custom"
+                        ],
+                        "drush/{$name}": [
+                            "type:drupal-drush"
+                        ]
+                    }
+                },
+                "scripts": {
+                    "post-create-project-cmd": [
+                        "make cast-spell"
+                    ]
+                },
+                "license": [
+                    "MIT"
+                ],
+                "description": "Drupal 9 started project",
+                "homepage": "https://github.com/City-of-Helsinki/drupal-base",
+                "support": {
+                    "source": "https://github.com/City-of-Helsinki/drupal-base/tree/master",
+                    "issues": "https://github.com/City-of-Helsinki/drupal-base/issues"
+                }
+            }
+        },
+        "druidfi/tools": {
+            "dev-master": {
+                "name": "druidfi/tools",
+                "version": "dev-master",
+                "version_normalized": "9999999-dev",
+                "type": "tools"
+            }
+        },
         "drupal/api_tools": {
             "dev-8.x-1.x": {
                 "name": "drupal/api_tools",
