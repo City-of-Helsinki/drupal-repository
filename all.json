@@ -98,7 +98,7 @@
                 "version": "1.0.0",
                 "version_normalized": "1.0.0.0",
                 "source": {
-                    "type": "vcs",
+                    "type": "git",
                     "url": "git@github.com:druidfi/tools.git",
                     "reference": "dev-master"
                 },
