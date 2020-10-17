@@ -2,18 +2,18 @@
     "packages": {
         "city-of-helsinki/drupal-base": {
             "dev-master": {
-                "name": "City-of-Helsinki/drupal-base",
+                "name": "city-of-helsinki/drupal-base",
                 "version": "dev-master",
                 "version_normalized": "9999999-dev",
                 "source": {
                     "type": "git",
                     "url": "https://github.com/City-of-Helsinki/drupal-base.git",
-                    "reference": "b112bff1deefe5aa50a0dcaed326200b711e2d34"
+                    "reference": "e8d3de775b0476312c868155c20606b729add363"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-base/zipball/b112bff1deefe5aa50a0dcaed326200b711e2d34",
-                    "reference": "b112bff1deefe5aa50a0dcaed326200b711e2d34",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-base/zipball/e8d3de775b0476312c868155c20606b729add363",
+                    "reference": "e8d3de775b0476312c868155c20606b729add363",
                     "shasum": ""
                 },
                 "require": {
@@ -30,7 +30,7 @@
                 "require-dev": {
                     "drupal/core-dev": "^9.0"
                 },
-                "time": "2020-10-17T10:05:43+00:00",
+                "time": "2020-10-17T10:21:03+00:00",
                 "type": "project",
                 "extra": {
                     "composer-exit-on-patch-failure": true,
@@ -92,9 +92,9 @@
                 }
             }
         },
-        "druidfi/tools": {
+        "druid/tools": {
             "dev-master": {
-                "name": "druidfi/tools",
+                "name": "druid/tools",
                 "version": "dev-master",
                 "version_normalized": "9999999-dev",
                 "type": "tools"
