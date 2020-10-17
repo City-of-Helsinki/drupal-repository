@@ -100,7 +100,7 @@
                 "source": {
                     "type": "git",
                     "url": "git@github.com:druidfi/tools.git",
-                    "reference": "dev-master"
+                    "reference": "master"
                 },
                 "type": "tools"
             }
