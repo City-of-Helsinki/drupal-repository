@@ -102,7 +102,7 @@
                     "url": "git@github.com:druidfi/tools.git",
                     "reference": "master"
                 },
-                "type": "tools"
+                "type": "drupal-tools"
             }
         },
         "drupal/api_tools": {
