@@ -8,12 +8,12 @@
                 "source": {
                     "type": "git",
                     "url": "https://github.com/City-of-Helsinki/drupal-base.git",
-                    "reference": "a13d12cd05b2b539d93cfa164b770083629c515e"
+                    "reference": "200149369984b54182526f165d7a7b4621f262b8"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-base/zipball/a13d12cd05b2b539d93cfa164b770083629c515e",
-                    "reference": "a13d12cd05b2b539d93cfa164b770083629c515e",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-base/zipball/200149369984b54182526f165d7a7b4621f262b8",
+                    "reference": "200149369984b54182526f165d7a7b4621f262b8",
                     "shasum": ""
                 },
                 "require": {
@@ -31,7 +31,7 @@
                 "require-dev": {
                     "drupal/core-dev": "^9.0"
                 },
-                "time": "2020-10-17T11:52:50+00:00",
+                "time": "2020-10-17T12:39:46+00:00",
                 "type": "project",
                 "extra": {
                     "composer-exit-on-patch-failure": true,
@@ -97,10 +97,9 @@
                 "name": "druid/tools",
                 "version": "1.0.0",
                 "version_normalized": "1.0.0.0",
-                "source": {
-                    "type": "git",
-                    "url": "git@github.com:druidfi/tools.git",
-                    "reference": "master"
+                "dist": {
+                    "type": "zip",
+                    "url": "https://github.com/druidfi/tools/archive/master.zip"
                 },
                 "type": "library"
             }
