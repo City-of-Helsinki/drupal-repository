@@ -8,17 +8,18 @@
                 "source": {
                     "type": "git",
                     "url": "https://github.com/City-of-Helsinki/drupal-base.git",
-                    "reference": "e8d3de775b0476312c868155c20606b729add363"
+                    "reference": "f828504b5db6e33fd82547b22e28859db66d06b2"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-base/zipball/e8d3de775b0476312c868155c20606b729add363",
-                    "reference": "e8d3de775b0476312c868155c20606b729add363",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-base/zipball/f828504b5db6e33fd82547b22e28859db66d06b2",
+                    "reference": "f828504b5db6e33fd82547b22e28859db66d06b2",
                     "shasum": ""
                 },
                 "require": {
                     "composer/installers": "^1.9",
                     "cweagans/composer-patches": "^1.6.7",
+                    "druid/tools": "^1.0",
                     "druidfi/omen": "^0.2.0",
                     "drupal/core-composer-scaffold": "^9.0",
                     "drupal/core-recommended": "^9.0",
@@ -30,7 +31,7 @@
                 "require-dev": {
                     "drupal/core-dev": "^9.0"
                 },
-                "time": "2020-10-17T10:21:03+00:00",
+                "time": "2020-10-17T11:26:28+00:00",
                 "type": "project",
                 "extra": {
                     "composer-exit-on-patch-failure": true,
@@ -49,9 +50,6 @@
                     "installer-paths": {
                         "public/core": [
                             "type:drupal-core"
-                        ],
-                        "tools/{$name}": [
-                            "type:tools"
                         ],
                         "public/libraries/{$name}": [
                             "type:drupal-library"
