@@ -32,39 +32,6 @@
                     "issues": "https://github.com/druidfi/api_tools/issues"
                 }
             }
-        },
-        "tuutti/oauth2-office365": {
-            "dev-master": {
-                "name": "tuutti/oauth2-office365",
-                "version": "dev-master",
-                "version_normalized": "9999999-dev",
-                "source": {
-                    "type": "git",
-                    "url": "https://github.com/tuutti/oauth2-office365.git",
-                    "reference": "45ad26c098e85e95e3f7591840cac3a863748064"
-                },
-                "dist": {
-                    "type": "zip",
-                    "url": "https://api.github.com/repos/tuutti/oauth2-office365/zipball/45ad26c098e85e95e3f7591840cac3a863748064",
-                    "reference": "45ad26c098e85e95e3f7591840cac3a863748064",
-                    "shasum": ""
-                },
-                "require": {
-                    "league/oauth2-client": "~1.0"
-                },
-                "time": "2015-08-25T10:33:01+00:00",
-                "type": "library",
-                "autoload": {
-                    "psr-4": {
-                        "Tuutti\\OAuth2\\Client\\": "src/"
-                    }
-                },
-                "description": "Office 365 OAuth 2.0 Client Provider for The PHP League OAuth2-Client",
-                "support": {
-                    "source": "https://github.com/tuutti/oauth2-office365/tree/master",
-                    "issues": "https://github.com/tuutti/oauth2-office365/issues"
-                }
-            }
         }
     }
 }
