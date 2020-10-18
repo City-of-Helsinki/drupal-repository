@@ -8,12 +8,12 @@
                 "source": {
                     "type": "git",
                     "url": "https://github.com/City-of-Helsinki/drupal-base.git",
-                    "reference": "200149369984b54182526f165d7a7b4621f262b8"
+                    "reference": "b08a0e15aeed7d261a257a123b82b779d71034a3"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-base/zipball/200149369984b54182526f165d7a7b4621f262b8",
-                    "reference": "200149369984b54182526f165d7a7b4621f262b8",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-base/zipball/b08a0e15aeed7d261a257a123b82b779d71034a3",
+                    "reference": "b08a0e15aeed7d261a257a123b82b779d71034a3",
                     "shasum": ""
                 },
                 "require": {
@@ -31,7 +31,7 @@
                 "require-dev": {
                     "drupal/core-dev": "^9.0"
                 },
-                "time": "2020-10-17T12:39:46+00:00",
+                "time": "2020-10-17T16:59:09+00:00",
                 "type": "project",
                 "extra": {
                     "composer-exit-on-patch-failure": true,
@@ -76,7 +76,8 @@
                 },
                 "scripts": {
                     "post-create-project-cmd": [
-                        "rm README.md && mv README.project.md README.md",
+                        "rm README.md .github/workflows/ci.yml",
+                        "mv README.project.md README.md",
                         "composer config --unset scripts.post-create-project-cmd",
                         "git init && git add ."
                     ]
