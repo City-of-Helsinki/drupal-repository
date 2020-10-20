@@ -1,10 +1,177 @@
 {
     "packages": {
+        "city-of-helsinki/drupal-base": {
+            "dev-master": {
+                "name": "city-of-helsinki/drupal-base",
+                "version": "dev-master",
+                "version_normalized": "9999999-dev",
+                "source": {
+                    "type": "git",
+                    "url": "https://github.com/City-of-Helsinki/drupal-base.git",
+                    "reference": "b08a0e15aeed7d261a257a123b82b779d71034a3"
+                },
+                "dist": {
+                    "type": "zip",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-base/zipball/b08a0e15aeed7d261a257a123b82b779d71034a3",
+                    "reference": "b08a0e15aeed7d261a257a123b82b779d71034a3",
+                    "shasum": ""
+                },
+                "require": {
+                    "composer/installers": "^1.9",
+                    "cweagans/composer-patches": "^1.6.7",
+                    "druid/tools": "^1.0",
+                    "druidfi/omen": "^0.2.0",
+                    "drupal/core-composer-scaffold": "^9.0",
+                    "drupal/core-recommended": "^9.0",
+                    "drush/drush": "^10.3"
+                },
+                "conflict": {
+                    "drupal/drupal": "*"
+                },
+                "require-dev": {
+                    "drupal/core-dev": "^9.0"
+                },
+                "time": "2020-10-17T16:59:09+00:00",
+                "type": "project",
+                "extra": {
+                    "composer-exit-on-patch-failure": true,
+                    "drupal-scaffold": {
+                        "allowed-packages": [
+                            "drupal/core"
+                        ],
+                        "locations": {
+                            "web-root": "./public"
+                        },
+                        "file-mapping": {
+                            "[project-root]/.editorconfig": false
+                        }
+                    },
+                    "enable-patching": true,
+                    "installer-paths": {
+                        "public/core": [
+                            "type:drupal-core"
+                        ],
+                        "public/libraries/{$name}": [
+                            "type:drupal-library"
+                        ],
+                        "public/modules/contrib/{$name}": [
+                            "type:drupal-module"
+                        ],
+                        "public/modules/custom/{$name}": [
+                            "type:drupal-module-custom"
+                        ],
+                        "public/profiles/{$name}": [
+                            "type:drupal-profile"
+                        ],
+                        "public/themes/contrib/{$name}": [
+                            "type:drupal-theme"
+                        ],
+                        "public/themes/custom/{$name}": [
+                            "type:drupal-theme-custom"
+                        ],
+                        "drush/{$name}": [
+                            "type:drupal-drush"
+                        ]
+                    }
+                },
+                "scripts": {
+                    "post-create-project-cmd": [
+                        "rm README.md .github/workflows/ci.yml",
+                        "mv README.project.md README.md",
+                        "composer config --unset scripts.post-create-project-cmd",
+                        "git init && git add ."
+                    ]
+                },
+                "license": [
+                    "MIT"
+                ],
+                "description": "Drupal 9 started project",
+                "homepage": "https://github.com/City-of-Helsinki/drupal-base",
+                "support": {
+                    "source": "https://github.com/City-of-Helsinki/drupal-base/tree/master",
+                    "issues": "https://github.com/City-of-Helsinki/drupal-base/issues"
+                }
+            }
+        },
+        "druid/tools": {
+            "1.0.0": {
+                "name": "druid/tools",
+                "version": "1.0.0",
+                "version_normalized": "1.0.0.0",
+                "dist": {
+                    "type": "zip",
+                    "url": "https://github.com/druidfi/tools/archive/master.zip"
+                },
+                "type": "library"
+            }
+        },
+        "drupal/api_tools": {
+            "dev-8.x-1.x": {
+                "name": "drupal/api_tools",
+                "version": "dev-8.x-1.x",
+                "version_normalized": "dev-8.x-1.x",
+                "source": {
+                    "type": "git",
+                    "url": "https://github.com/druidfi/api_tools.git",
+                    "reference": "dd07d9565983a017f686605374a084455bb68237"
+                },
+                "dist": {
+                    "type": "zip",
+                    "url": "https://api.github.com/repos/druidfi/api_tools/zipball/dd07d9565983a017f686605374a084455bb68237",
+                    "reference": "dd07d9565983a017f686605374a084455bb68237",
+                    "shasum": ""
+                },
+                "require": {
+                    "league/uri": "~6.2"
+                },
+                "time": "2020-10-16T16:23:07+00:00",
+                "type": "drupal-module",
+                "license": [
+                    "GPL-2.0+"
+                ],
+                "keywords": [
+                    "Drupal"
+                ],
+                "support": {
+                    "source": "https://github.com/druidfi/api_tools/tree/8.x-1.x",
+                    "issues": "https://github.com/druidfi/api_tools/issues"
+                }
+            }
+        },
         "drupal/hdbt": {
             "1.0.0": {
                 "name": "drupal/hdbt",
                 "version": "1.0.0",
                 "version_normalized": "1.0.0.0",
+                "source": {
+                    "type": "git",
+                    "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
+                    "reference": "d4a5af69da706854fa37a24a873323b0c7496c30"
+                },
+                "dist": {
+                    "type": "zip",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/d4a5af69da706854fa37a24a873323b0c7496c30",
+                    "reference": "d4a5af69da706854fa37a24a873323b0c7496c30",
+                    "shasum": ""
+                },
+                "time": "2020-10-20T06:20:04+00:00",
+                "type": "drupal-custom-theme",
+                "license": [
+                    "GPL-2.0+"
+                ],
+                "description": "Helsinki Drupal Base theme",
+                "keywords": [
+                    "Drupal"
+                ],
+                "support": {
+                    "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/1.0.0",
+                    "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
+                }
+            },
+            "dev-main": {
+                "name": "drupal/hdbt",
+                "version": "dev-main",
+                "version_normalized": "dev-main",
                 "source": {
                     "type": "git",
                     "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
