@@ -1,19 +1,19 @@
 {
     "packages": {
         "city-of-helsinki/drupal-base": {
-            "dev-master": {
+            "dev-main": {
                 "name": "city-of-helsinki/drupal-base",
-                "version": "dev-master",
-                "version_normalized": "9999999-dev",
+                "version": "dev-main",
+                "version_normalized": "dev-main",
                 "source": {
                     "type": "git",
                     "url": "https://github.com/City-of-Helsinki/drupal-base.git",
-                    "reference": "b08a0e15aeed7d261a257a123b82b779d71034a3"
+                    "reference": "351880f6633bae69b549a649a38178950acdc833"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-base/zipball/b08a0e15aeed7d261a257a123b82b779d71034a3",
-                    "reference": "b08a0e15aeed7d261a257a123b82b779d71034a3",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-base/zipball/351880f6633bae69b549a649a38178950acdc833",
+                    "reference": "351880f6633bae69b549a649a38178950acdc833",
                     "shasum": ""
                 },
                 "require": {
@@ -23,6 +23,7 @@
                     "druidfi/omen": "^0.2.0",
                     "drupal/core-composer-scaffold": "^9.0",
                     "drupal/core-recommended": "^9.0",
+                    "drupal/hdbt": "~1.0",
                     "drush/drush": "^10.3"
                 },
                 "conflict": {
@@ -31,7 +32,7 @@
                 "require-dev": {
                     "drupal/core-dev": "^9.0"
                 },
-                "time": "2020-10-17T16:59:09+00:00",
+                "time": "2020-10-20T07:14:49+00:00",
                 "type": "project",
                 "extra": {
                     "composer-exit-on-patch-failure": true,
@@ -58,7 +59,7 @@
                             "type:drupal-module"
                         ],
                         "public/modules/custom/{$name}": [
-                            "type:drupal-module-custom"
+                            "type:drupal-custom-module"
                         ],
                         "public/profiles/{$name}": [
                             "type:drupal-profile"
@@ -67,7 +68,7 @@
                             "type:drupal-theme"
                         ],
                         "public/themes/custom/{$name}": [
-                            "type:drupal-theme-custom"
+                            "type:drupal-custom-theme"
                         ],
                         "drush/{$name}": [
                             "type:drupal-drush"
@@ -88,7 +89,7 @@
                 "description": "Drupal 9 started project",
                 "homepage": "https://github.com/City-of-Helsinki/drupal-base",
                 "support": {
-                    "source": "https://github.com/City-of-Helsinki/drupal-base/tree/master",
+                    "source": "https://github.com/City-of-Helsinki/drupal-base/tree/main",
                     "issues": "https://github.com/City-of-Helsinki/drupal-base/issues"
                 }
             }
