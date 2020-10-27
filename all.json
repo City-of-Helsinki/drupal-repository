@@ -265,19 +265,21 @@
                 "source": {
                     "type": "git",
                     "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-trp.git",
-                    "reference": "2cdbc511c030e6b16b5880dcff6612b768c2d121"
+                    "reference": "842e171ec6af5cb833bb6eae959a71d0136d3d5a"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-trp/zipball/2cdbc511c030e6b16b5880dcff6612b768c2d121",
-                    "reference": "2cdbc511c030e6b16b5880dcff6612b768c2d121",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-trp/zipball/842e171ec6af5cb833bb6eae959a71d0136d3d5a",
+                    "reference": "842e171ec6af5cb833bb6eae959a71d0136d3d5a",
                     "shasum": ""
                 },
                 "require": {
                     "drupal/address": "~1.0",
-                    "drupal/helfi_api_base": "1.x-dev"
+                    "drupal/helfi_api_base": "1.x-dev",
+                    "drupal/migrate_plus": "~5.0",
+                    "drupal/migrate_tools": "~5.0"
                 },
-                "time": "2020-10-27T07:52:26+00:00",
+                "time": "2020-10-27T08:40:31+00:00",
                 "type": "drupal-custom-module",
                 "support": {
                     "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-trp/tree/1.x",
