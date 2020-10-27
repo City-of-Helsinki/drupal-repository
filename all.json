@@ -8,12 +8,12 @@
                 "source": {
                     "type": "git",
                     "url": "https://github.com/City-of-Helsinki/drupal-base.git",
-                    "reference": "351880f6633bae69b549a649a38178950acdc833"
+                    "reference": "fb6168b3f5ba72e53f71b5b19639df9d8b29feb0"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-base/zipball/351880f6633bae69b549a649a38178950acdc833",
-                    "reference": "351880f6633bae69b549a649a38178950acdc833",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-base/zipball/fb6168b3f5ba72e53f71b5b19639df9d8b29feb0",
+                    "reference": "fb6168b3f5ba72e53f71b5b19639df9d8b29feb0",
                     "shasum": ""
                 },
                 "require": {
@@ -32,7 +32,7 @@
                 "require-dev": {
                     "drupal/core-dev": "^9.0"
                 },
-                "time": "2020-10-20T07:14:49+00:00",
+                "time": "2020-10-27T11:59:12+00:00",
                 "type": "project",
                 "extra": {
                     "composer-exit-on-patch-failure": true,
