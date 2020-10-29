@@ -255,6 +255,31 @@
                     "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/1.x",
                     "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/issues"
                 }
+            },
+            "dev-HELFI-X-initial-setup": {
+                "name": "drupal/helfi_api_base",
+                "version": "dev-HELFI-X-initial-setup",
+                "version_normalized": "dev-HELFI-X-initial-setup",
+                "source": {
+                    "type": "git",
+                    "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base.git",
+                    "reference": "065d8a3123463cd29ec313ade818ff0fbdf4e4e8"
+                },
+                "dist": {
+                    "type": "zip",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/065d8a3123463cd29ec313ade818ff0fbdf4e4e8",
+                    "reference": "065d8a3123463cd29ec313ade818ff0fbdf4e4e8",
+                    "shasum": ""
+                },
+                "require": {
+                    "drupal/api_tools": "~1.0.0"
+                },
+                "time": "2020-10-29T08:31:18+00:00",
+                "type": "drupal-custom-module",
+                "support": {
+                    "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/HELFI-X-initial-setup",
+                    "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/issues"
+                }
             }
         },
         "drupal/helfi_trp": {
@@ -283,6 +308,34 @@
                 "type": "drupal-custom-module",
                 "support": {
                     "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-trp/tree/1.x",
+                    "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-trp/issues"
+                }
+            },
+            "dev-HELFI-X-initial-setup": {
+                "name": "drupal/helfi_trp",
+                "version": "dev-HELFI-X-initial-setup",
+                "version_normalized": "dev-HELFI-X-initial-setup",
+                "source": {
+                    "type": "git",
+                    "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-trp.git",
+                    "reference": "946f4ec807a6d8cd716bd190d0f65e091abc7e77"
+                },
+                "dist": {
+                    "type": "zip",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-trp/zipball/946f4ec807a6d8cd716bd190d0f65e091abc7e77",
+                    "reference": "946f4ec807a6d8cd716bd190d0f65e091abc7e77",
+                    "shasum": ""
+                },
+                "require": {
+                    "drupal/address": "~1.0",
+                    "drupal/helfi_api_base": "1.x-dev",
+                    "drupal/migrate_plus": "~5.0",
+                    "drupal/migrate_tools": "~5.0"
+                },
+                "time": "2020-10-29T08:30:45+00:00",
+                "type": "drupal-custom-module",
+                "support": {
+                    "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-trp/tree/HELFI-X-initial-setup",
                     "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-trp/issues"
                 }
             }
