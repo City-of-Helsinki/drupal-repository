@@ -263,18 +263,18 @@
                 "source": {
                     "type": "git",
                     "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base.git",
-                    "reference": "b1e8e846ccb2c32bc1d5461767eb95db9646656e"
+                    "reference": "59af25ec6f5ce5b73da737fd3d19032b58d59437"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/b1e8e846ccb2c32bc1d5461767eb95db9646656e",
-                    "reference": "b1e8e846ccb2c32bc1d5461767eb95db9646656e",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/59af25ec6f5ce5b73da737fd3d19032b58d59437",
+                    "reference": "59af25ec6f5ce5b73da737fd3d19032b58d59437",
                     "shasum": ""
                 },
                 "require": {
                     "drupal/api_tools": "~1.0.0"
                 },
-                "time": "2020-10-29T13:27:03+00:00",
+                "time": "2020-10-30T11:27:52+00:00",
                 "type": "drupal-custom-module",
                 "support": {
                     "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base/tree/HELFI-X-initial-setup",
