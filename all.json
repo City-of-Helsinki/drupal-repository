@@ -1,19 +1,19 @@
 {
     "packages": {
-        "city-of-helsinki/drupal-base": {
+        "city-of-helsinki/drupal-helfi-platform": {
             "dev-main": {
-                "name": "city-of-helsinki/drupal-base",
+                "name": "city-of-helsinki/drupal-helfi-platform",
                 "version": "dev-main",
                 "version_normalized": "dev-main",
                 "source": {
                     "type": "git",
-                    "url": "https://github.com/City-of-Helsinki/drupal-base.git",
-                    "reference": "fb6168b3f5ba72e53f71b5b19639df9d8b29feb0"
+                    "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform.git",
+                    "reference": "c1c3b7442706d17d215c3f630a8f95358baacb89"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-base/zipball/fb6168b3f5ba72e53f71b5b19639df9d8b29feb0",
-                    "reference": "fb6168b3f5ba72e53f71b5b19639df9d8b29feb0",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform/zipball/c1c3b7442706d17d215c3f630a8f95358baacb89",
+                    "reference": "c1c3b7442706d17d215c3f630a8f95358baacb89",
                     "shasum": ""
                 },
                 "require": {
@@ -32,7 +32,7 @@
                 "require-dev": {
                     "drupal/core-dev": "^9.0"
                 },
-                "time": "2020-10-27T11:59:12+00:00",
+                "time": "2020-11-02T08:18:49+00:00",
                 "type": "project",
                 "extra": {
                     "composer-exit-on-patch-failure": true,
@@ -87,10 +87,10 @@
                     "MIT"
                 ],
                 "description": "Drupal 9 started project",
-                "homepage": "https://github.com/City-of-Helsinki/drupal-base",
+                "homepage": "https://github.com/City-of-Helsinki/drupal-helfi-platform",
                 "support": {
-                    "source": "https://github.com/City-of-Helsinki/drupal-base/tree/main",
-                    "issues": "https://github.com/City-of-Helsinki/drupal-base/issues"
+                    "source": "https://github.com/City-of-Helsinki/drupal-helfi-platform/tree/main",
+                    "issues": "https://github.com/City-of-Helsinki/drupal-helfi-platform/issues"
                 }
             }
         },
