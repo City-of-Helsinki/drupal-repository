@@ -264,20 +264,20 @@
                 }
             }
         },
-        "drupal/helfi_trp": {
+        "drupal/helfi_tpr": {
             "1.x-dev": {
-                "name": "drupal/helfi_trp",
+                "name": "drupal/helfi_tpr",
                 "version": "1.x-dev",
                 "version_normalized": "1.9999999.9999999.9999999-dev",
                 "source": {
                     "type": "git",
-                    "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-trp.git",
-                    "reference": "088ddc60ed9dd9c75cf34524d0e54b111043a7e8"
+                    "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-tpr.git",
+                    "reference": "fd37cf5935c2ea4e2ef2f375a87cef0e229a8642"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-trp/zipball/088ddc60ed9dd9c75cf34524d0e54b111043a7e8",
-                    "reference": "088ddc60ed9dd9c75cf34524d0e54b111043a7e8",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tpr/zipball/fd37cf5935c2ea4e2ef2f375a87cef0e229a8642",
+                    "reference": "fd37cf5935c2ea4e2ef2f375a87cef0e229a8642",
                     "shasum": ""
                 },
                 "require": {
@@ -290,11 +290,11 @@
                     "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
                     "drupal/coder": "^8.3"
                 },
-                "time": "2020-11-04T16:33:34+00:00",
+                "time": "2020-11-04T20:08:29+00:00",
                 "type": "drupal-custom-module",
                 "support": {
-                    "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-trp/tree/1.x",
-                    "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-trp/issues"
+                    "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-tpr/tree/1.x",
+                    "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-tpr/issues"
                 }
             }
         }
