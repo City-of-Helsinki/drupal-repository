@@ -8,12 +8,12 @@
                 "source": {
                     "type": "git",
                     "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform.git",
-                    "reference": "c1c3b7442706d17d215c3f630a8f95358baacb89"
+                    "reference": "959f47418f5f06da158877817fee36dd2443fd9c"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform/zipball/c1c3b7442706d17d215c3f630a8f95358baacb89",
-                    "reference": "c1c3b7442706d17d215c3f630a8f95358baacb89",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform/zipball/959f47418f5f06da158877817fee36dd2443fd9c",
+                    "reference": "959f47418f5f06da158877817fee36dd2443fd9c",
                     "shasum": ""
                 },
                 "require": {
@@ -30,9 +30,11 @@
                     "drupal/drupal": "*"
                 },
                 "require-dev": {
+                    "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+                    "drupal/coder": "^8.3",
                     "drupal/core-dev": "^9.0"
                 },
-                "time": "2020-11-02T08:18:49+00:00",
+                "time": "2020-11-04T16:22:39+00:00",
                 "type": "project",
                 "extra": {
                     "composer-exit-on-patch-failure": true,
@@ -284,6 +286,38 @@
                 "type": "drupal-custom-module",
                 "support": {
                     "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-trp/tree/1.x",
+                    "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-trp/issues"
+                }
+            },
+            "dev-HELFI-X-run-phpcs": {
+                "name": "drupal/helfi_trp",
+                "version": "dev-HELFI-X-run-phpcs",
+                "version_normalized": "dev-HELFI-X-run-phpcs",
+                "source": {
+                    "type": "git",
+                    "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-trp.git",
+                    "reference": "47182d2e693a98bb6ed4df66b0351349233bd113"
+                },
+                "dist": {
+                    "type": "zip",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-trp/zipball/47182d2e693a98bb6ed4df66b0351349233bd113",
+                    "reference": "47182d2e693a98bb6ed4df66b0351349233bd113",
+                    "shasum": ""
+                },
+                "require": {
+                    "drupal/address": "~1.0",
+                    "drupal/helfi_api_base": "1.x-dev",
+                    "drupal/migrate_plus": "~5.0",
+                    "drupal/migrate_tools": "~5.0"
+                },
+                "require-dev": {
+                    "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+                    "drupal/coder": "^8.3"
+                },
+                "time": "2020-11-04T16:16:04+00:00",
+                "type": "drupal-custom-module",
+                "support": {
+                    "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-trp/tree/HELFI-X-run-phpcs",
                     "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-trp/issues"
                 }
             }
