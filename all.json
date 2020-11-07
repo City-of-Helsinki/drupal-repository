@@ -202,35 +202,6 @@
                     "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
                 }
             },
-            "dev-UHF-5_base_theme": {
-                "name": "drupal/hdbt",
-                "version": "dev-UHF-5_base_theme",
-                "version_normalized": "dev-UHF-5_base_theme",
-                "source": {
-                    "type": "git",
-                    "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                    "reference": "b7479b5201d89f1054c09b59abc25690980d726b"
-                },
-                "dist": {
-                    "type": "zip",
-                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/b7479b5201d89f1054c09b59abc25690980d726b",
-                    "reference": "b7479b5201d89f1054c09b59abc25690980d726b",
-                    "shasum": ""
-                },
-                "time": "2020-11-06T10:39:36+00:00",
-                "type": "drupal-custom-theme",
-                "license": [
-                    "GPL-2.0+"
-                ],
-                "description": "Helsinki Drupal Base theme",
-                "keywords": [
-                    "Drupal"
-                ],
-                "support": {
-                    "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/UHF-5_base_theme",
-                    "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
-                }
-            },
             "dev-dev": {
                 "name": "drupal/hdbt",
                 "version": "dev-dev",
@@ -238,15 +209,15 @@
                 "source": {
                     "type": "git",
                     "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                    "reference": "8ad0b1b2b0020b996eadbc5d0008cf737ec891f0"
+                    "reference": "73b75dfb8b12c74c49e61144fb8d5fbb5f4749d5"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/8ad0b1b2b0020b996eadbc5d0008cf737ec891f0",
-                    "reference": "8ad0b1b2b0020b996eadbc5d0008cf737ec891f0",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/73b75dfb8b12c74c49e61144fb8d5fbb5f4749d5",
+                    "reference": "73b75dfb8b12c74c49e61144fb8d5fbb5f4749d5",
                     "shasum": ""
                 },
-                "time": "2020-10-29T15:47:51+00:00",
+                "time": "2020-11-06T14:28:48+00:00",
                 "type": "drupal-custom-theme",
                 "license": [
                     "GPL-2.0+"
@@ -285,7 +256,7 @@
                     "Drupal"
                 ],
                 "support": {
-                    "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/dev",
+                    "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/main",
                     "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
                 }
             }
