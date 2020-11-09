@@ -231,6 +231,35 @@
                     "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
                 }
             },
+            "dev-HELFI-X-workflow-events": {
+                "name": "drupal/hdbt",
+                "version": "dev-HELFI-X-workflow-events",
+                "version_normalized": "dev-HELFI-X-workflow-events",
+                "source": {
+                    "type": "git",
+                    "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
+                    "reference": "081d4ec6acfeae42ee4408e0ce100421075c0650"
+                },
+                "dist": {
+                    "type": "zip",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/081d4ec6acfeae42ee4408e0ce100421075c0650",
+                    "reference": "081d4ec6acfeae42ee4408e0ce100421075c0650",
+                    "shasum": ""
+                },
+                "time": "2020-11-09T15:08:15+00:00",
+                "type": "drupal-custom-theme",
+                "license": [
+                    "GPL-2.0+"
+                ],
+                "description": "Helsinki Drupal Base theme",
+                "keywords": [
+                    "Drupal"
+                ],
+                "support": {
+                    "source": "https://github.com/City-of-Helsinki/drupal-hdbt/tree/HELFI-X-workflow-events",
+                    "issues": "https://github.com/City-of-Helsinki/drupal-hdbt/issues"
+                }
+            },
             "dev-dev": {
                 "name": "drupal/hdbt",
                 "version": "dev-dev",
@@ -389,38 +418,6 @@
             }
         },
         "drupal/helfi_tpr": {
-            "1.x-dev": {
-                "name": "drupal/helfi_tpr",
-                "version": "1.x-dev",
-                "version_normalized": "1.9999999.9999999.9999999-dev",
-                "source": {
-                    "type": "git",
-                    "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-tpr.git",
-                    "reference": "fd37cf5935c2ea4e2ef2f375a87cef0e229a8642"
-                },
-                "dist": {
-                    "type": "zip",
-                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tpr/zipball/fd37cf5935c2ea4e2ef2f375a87cef0e229a8642",
-                    "reference": "fd37cf5935c2ea4e2ef2f375a87cef0e229a8642",
-                    "shasum": ""
-                },
-                "require": {
-                    "drupal/address": "~1.0",
-                    "drupal/helfi_api_base": "1.x-dev",
-                    "drupal/migrate_plus": "~5.0",
-                    "drupal/migrate_tools": "~5.0"
-                },
-                "require-dev": {
-                    "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
-                    "drupal/coder": "^8.3"
-                },
-                "time": "2020-11-04T20:08:29+00:00",
-                "type": "drupal-custom-module",
-                "support": {
-                    "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-tpr/tree/1.x",
-                    "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-tpr/issues"
-                }
-            },
             "dev-HELFI-X-rename-tpr": {
                 "name": "drupal/helfi_tpr",
                 "version": "dev-HELFI-X-rename-tpr",
