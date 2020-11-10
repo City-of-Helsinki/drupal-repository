@@ -8,12 +8,12 @@
                 "source": {
                     "type": "git",
                     "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform.git",
-                    "reference": "2c9d52779231e0bdfc1569ae639b0741dc34b734"
+                    "reference": "64c051c1cfa6339451c930775ecedc1e77cb1f3f"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform/zipball/2c9d52779231e0bdfc1569ae639b0741dc34b734",
-                    "reference": "2c9d52779231e0bdfc1569ae639b0741dc34b734",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform/zipball/64c051c1cfa6339451c930775ecedc1e77cb1f3f",
+                    "reference": "64c051c1cfa6339451c930775ecedc1e77cb1f3f",
                     "shasum": ""
                 },
                 "require": {
@@ -34,7 +34,7 @@
                     "drupal/coder": "^8.3",
                     "drupal/core-dev": "^9.0"
                 },
-                "time": "2020-11-10T10:06:38+00:00",
+                "time": "2020-11-10T10:15:00+00:00",
                 "type": "project",
                 "extra": {
                     "composer-exit-on-patch-failure": true,
