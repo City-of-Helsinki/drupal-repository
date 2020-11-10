@@ -8,18 +8,17 @@
                 "source": {
                     "type": "git",
                     "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform.git",
-                    "reference": "64c051c1cfa6339451c930775ecedc1e77cb1f3f"
+                    "reference": "f2b75a932cef752f8206eecee7637e9a431d155f"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform/zipball/64c051c1cfa6339451c930775ecedc1e77cb1f3f",
-                    "reference": "64c051c1cfa6339451c930775ecedc1e77cb1f3f",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform/zipball/f2b75a932cef752f8206eecee7637e9a431d155f",
+                    "reference": "f2b75a932cef752f8206eecee7637e9a431d155f",
                     "shasum": ""
                 },
                 "require": {
                     "composer/installers": "^1.9",
                     "cweagans/composer-patches": "^1.6.7",
-                    "druid/tools": "^1.0",
                     "druidfi/omen": "^0.2.0",
                     "drupal/core-composer-scaffold": "^9.0",
                     "drupal/core-recommended": "^9.0",
@@ -34,7 +33,7 @@
                     "drupal/coder": "^8.3",
                     "drupal/core-dev": "^9.0"
                 },
-                "time": "2020-11-10T10:15:00+00:00",
+                "time": "2020-11-10T17:16:23+00:00",
                 "type": "project",
                 "extra": {
                     "composer-exit-on-patch-failure": true,
@@ -79,10 +78,8 @@
                 },
                 "scripts": {
                     "post-create-project-cmd": [
-                        "rm README.md .github/workflows/ci.yml .github/workflows/update-repository.yml",
-                        "mv README.project.md README.md",
-                        "composer config --unset scripts.post-create-project-cmd",
-                        "git init && git add ."
+                        "rm .github/workflows/ci.yml .github/workflows/update-repository.yml",
+                        "make cast-spell"
                     ]
                 },
                 "license": [
