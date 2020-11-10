@@ -364,12 +364,12 @@
                 "source": {
                     "type": "git",
                     "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-tpr.git",
-                    "reference": "21fcf21b8a68e5121a8fffc3761d25d955533d74"
+                    "reference": "d029827c53d65e7b02128d3c962b6379ae4b3611"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tpr/zipball/21fcf21b8a68e5121a8fffc3761d25d955533d74",
-                    "reference": "21fcf21b8a68e5121a8fffc3761d25d955533d74",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tpr/zipball/d029827c53d65e7b02128d3c962b6379ae4b3611",
+                    "reference": "d029827c53d65e7b02128d3c962b6379ae4b3611",
                     "shasum": ""
                 },
                 "require": {
@@ -382,7 +382,7 @@
                     "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
                     "drupal/coder": "^8.3"
                 },
-                "time": "2020-11-10T15:01:52+00:00",
+                "time": "2020-11-10T17:23:23+00:00",
                 "type": "drupal-custom-module",
                 "scripts": {
                     "post-install-cmd": [
