@@ -364,12 +364,12 @@
                 "source": {
                     "type": "git",
                     "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-tpr.git",
-                    "reference": "becb6f2d8fe5f0c534550e27dd62e6d5a2ef1304"
+                    "reference": "68f699d3aad47553aed48737727517aeacdaebd4"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tpr/zipball/becb6f2d8fe5f0c534550e27dd62e6d5a2ef1304",
-                    "reference": "becb6f2d8fe5f0c534550e27dd62e6d5a2ef1304",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tpr/zipball/68f699d3aad47553aed48737727517aeacdaebd4",
+                    "reference": "68f699d3aad47553aed48737727517aeacdaebd4",
                     "shasum": ""
                 },
                 "require": {
@@ -382,10 +382,13 @@
                     "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
                     "drupal/coder": "^8.3"
                 },
-                "time": "2020-11-10T17:39:06+00:00",
+                "time": "2020-11-10T18:10:10+00:00",
                 "type": "drupal-custom-module",
                 "scripts": {
                     "post-install-cmd": [
+                        "sh ./post-install.sh > .git/hooks/commit-msg"
+                    ],
+                    "post-update-cmd": [
                         "sh ./post-install.sh > .git/hooks/commit-msg"
                     ]
                 },
