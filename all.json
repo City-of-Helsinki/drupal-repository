@@ -8,12 +8,12 @@
                 "source": {
                     "type": "git",
                     "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform.git",
-                    "reference": "528be65aacf465fc05df0c18935cc599e1bc718f"
+                    "reference": "96825a1e78dd7757361db453c75426c5b531aab7"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform/zipball/528be65aacf465fc05df0c18935cc599e1bc718f",
-                    "reference": "528be65aacf465fc05df0c18935cc599e1bc718f",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform/zipball/96825a1e78dd7757361db453c75426c5b531aab7",
+                    "reference": "96825a1e78dd7757361db453c75426c5b531aab7",
                     "shasum": ""
                 },
                 "require": {
@@ -33,7 +33,7 @@
                     "drupal/coder": "^8.3",
                     "drupal/core-dev": "^9.0"
                 },
-                "time": "2020-11-10T19:59:48+00:00",
+                "time": "2020-11-11T08:05:51+00:00",
                 "type": "project",
                 "extra": {
                     "composer-exit-on-patch-failure": true,
@@ -77,15 +77,19 @@
                     }
                 },
                 "scripts": {
+                    "copy-commit-message-script": [
+                        "make copy-commit-message-script"
+                    ],
                     "post-create-project-cmd": [
                         "rm .github/workflows/ci.yml .github/workflows/update-repository.yml",
-                        "make cast-spell"
+                        "make cast-spell",
+                        "@copy-commit-message-script"
                     ],
                     "post-install-cmd": [
-                        "make copy-commit-message-script"
+                        "@copy-commit-message-script"
                     ],
                     "post-update-cmd": [
-                        "make copy-commit-message-script"
+                        "@copy-commit-message-script"
                     ]
                 },
                 "license": [
