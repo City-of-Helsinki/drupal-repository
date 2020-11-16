@@ -8,12 +8,12 @@
                 "source": {
                     "type": "git",
                     "url": "https://github.com/City-of-Helsinki/drupal-helfi-platform.git",
-                    "reference": "bc61c475b31fe50e99591822ed791ca1df65d867"
+                    "reference": "d011a6fb83064a11eacd251725720a0c6f18d095"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform/zipball/bc61c475b31fe50e99591822ed791ca1df65d867",
-                    "reference": "bc61c475b31fe50e99591822ed791ca1df65d867",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-helfi-platform/zipball/d011a6fb83064a11eacd251725720a0c6f18d095",
+                    "reference": "d011a6fb83064a11eacd251725720a0c6f18d095",
                     "shasum": ""
                 },
                 "require": {
@@ -34,7 +34,7 @@
                     "drupal/coder": "^8.3",
                     "drupal/core-dev": "^9.0"
                 },
-                "time": "2020-11-12T11:09:48+00:00",
+                "time": "2020-11-14T09:07:22+00:00",
                 "type": "project",
                 "extra": {
                     "composer-exit-on-patch-failure": true,
@@ -82,7 +82,7 @@
                         "make copy-commit-message-script"
                     ],
                     "post-create-project-cmd": [
-                        "rm .github/workflows/ci.yml .github/workflows/update-repository.yml",
+                        "rm .github/workflows/ci.yml",
                         "make cast-spell",
                         "@copy-commit-message-script"
                     ],
@@ -112,18 +112,18 @@
                 "source": {
                     "type": "git",
                     "url": "https://github.com/druidfi/api_tools.git",
-                    "reference": "dd07d9565983a017f686605374a084455bb68237"
+                    "reference": "8382331e71825a11eacd73355271b426c7879806"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/druidfi/api_tools/zipball/dd07d9565983a017f686605374a084455bb68237",
-                    "reference": "dd07d9565983a017f686605374a084455bb68237",
+                    "url": "https://api.github.com/repos/druidfi/api_tools/zipball/8382331e71825a11eacd73355271b426c7879806",
+                    "reference": "8382331e71825a11eacd73355271b426c7879806",
                     "shasum": ""
                 },
                 "require": {
                     "league/uri": "~6.2"
                 },
-                "time": "2020-10-16T16:23:07+00:00",
+                "time": "2020-11-14T23:38:30+00:00",
                 "type": "drupal-module",
                 "license": [
                     "GPL-2.0+"
@@ -132,7 +132,7 @@
                     "Drupal"
                 ],
                 "support": {
-                    "source": "https://github.com/druidfi/api_tools/tree/1.0.0",
+                    "source": "https://github.com/druidfi/api_tools/tree/8.x-1.x",
                     "issues": "https://github.com/druidfi/api_tools/issues"
                 }
             }
@@ -145,15 +145,15 @@
                 "source": {
                     "type": "git",
                     "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                    "reference": "a30189be84cd4b8f8769682503862bc573ad515e"
+                    "reference": "90a7034265464fd27f9ba6ed4f70788748016e4a"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/a30189be84cd4b8f8769682503862bc573ad515e",
-                    "reference": "a30189be84cd4b8f8769682503862bc573ad515e",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/90a7034265464fd27f9ba6ed4f70788748016e4a",
+                    "reference": "90a7034265464fd27f9ba6ed4f70788748016e4a",
                     "shasum": ""
                 },
-                "time": "2020-11-12T10:54:48+00:00",
+                "time": "2020-11-16T08:37:19+00:00",
                 "type": "drupal-custom-theme",
                 "license": [
                     "GPL-2.0+"
@@ -210,12 +210,12 @@
                 "source": {
                     "type": "git",
                     "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-api-base.git",
-                    "reference": "baf06a1c64d4e77976c7bb5b5ff9a0562e454bdb"
+                    "reference": "1ebb53fd536f226db28f28885f0ba022e487d29c"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/baf06a1c64d4e77976c7bb5b5ff9a0562e454bdb",
-                    "reference": "baf06a1c64d4e77976c7bb5b5ff9a0562e454bdb",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-api-base/zipball/1ebb53fd536f226db28f28885f0ba022e487d29c",
+                    "reference": "1ebb53fd536f226db28f28885f0ba022e487d29c",
                     "shasum": ""
                 },
                 "require": {
@@ -226,7 +226,7 @@
                     "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
                     "drupal/coder": "^8.3"
                 },
-                "time": "2020-11-11T12:37:22+00:00",
+                "time": "2020-11-14T09:01:40+00:00",
                 "type": "drupal-custom-module",
                 "license": [
                     "GPL-2.0-or-later"
@@ -246,12 +246,12 @@
                 "source": {
                     "type": "git",
                     "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-tpr.git",
-                    "reference": "339265fd345b17a9040c3e367a0f10c210ba9a74"
+                    "reference": "c8fcc1eb5553ee3ec37d84abe17e6f9a10e50c0c"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tpr/zipball/339265fd345b17a9040c3e367a0f10c210ba9a74",
-                    "reference": "339265fd345b17a9040c3e367a0f10c210ba9a74",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tpr/zipball/c8fcc1eb5553ee3ec37d84abe17e6f9a10e50c0c",
+                    "reference": "c8fcc1eb5553ee3ec37d84abe17e6f9a10e50c0c",
                     "shasum": ""
                 },
                 "require": {
@@ -264,7 +264,7 @@
                     "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
                     "drupal/coder": "^8.3"
                 },
-                "time": "2020-11-11T12:36:36+00:00",
+                "time": "2020-11-14T09:02:09+00:00",
                 "type": "drupal-custom-module",
                 "license": [
                     "GPL-2.0-or-later"
@@ -284,12 +284,12 @@
                 "source": {
                     "type": "git",
                     "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo.git",
-                    "reference": "f410be2b6773a188f195d78b44420f2adf263c80"
+                    "reference": "d7dad5d9a8b77cbe47b10512b9302936ab76a0e1"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tunnistamo/zipball/f410be2b6773a188f195d78b44420f2adf263c80",
-                    "reference": "f410be2b6773a188f195d78b44420f2adf263c80",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tunnistamo/zipball/d7dad5d9a8b77cbe47b10512b9302936ab76a0e1",
+                    "reference": "d7dad5d9a8b77cbe47b10512b9302936ab76a0e1",
                     "shasum": ""
                 },
                 "require": {
@@ -299,7 +299,7 @@
                     "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
                     "drupal/coder": "^8.3"
                 },
-                "time": "2020-11-11T12:36:57+00:00",
+                "time": "2020-11-14T09:02:36+00:00",
                 "type": "drupal-custom-module",
                 "license": [
                     "GPL-2.0-or-later"
