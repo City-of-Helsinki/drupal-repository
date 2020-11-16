@@ -145,15 +145,15 @@
                 "source": {
                     "type": "git",
                     "url": "https://github.com/City-of-Helsinki/drupal-hdbt.git",
-                    "reference": "8eb888a85ad829294973846f1f5828bf97cf7da0"
+                    "reference": "f81d2a2a58d43ae2b7a2b04c982f9037e408078f"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/8eb888a85ad829294973846f1f5828bf97cf7da0",
-                    "reference": "8eb888a85ad829294973846f1f5828bf97cf7da0",
+                    "url": "https://api.github.com/repos/City-of-Helsinki/drupal-hdbt/zipball/f81d2a2a58d43ae2b7a2b04c982f9037e408078f",
+                    "reference": "f81d2a2a58d43ae2b7a2b04c982f9037e408078f",
                     "shasum": ""
                 },
-                "time": "2020-11-16T12:03:05+00:00",
+                "time": "2020-11-16T12:17:34+00:00",
                 "type": "drupal-custom-theme",
                 "license": [
                     "GPL-2.0+"
