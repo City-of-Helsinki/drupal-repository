@@ -208,6 +208,11 @@
             "name": "drupal/helfi_audit_log",
             "type": "vcs",
             "url": "git@github.com:City-of-Helsinki/drupal-module-helfi-audit-log.git"
+        },
+        {
+            "name": "drupal/helfi_gdpr_api",
+            "type": "vcs",
+            "url": "git@github.com:City-of-Helsinki/drupal-module-helfi-gdpr-api.git"
         }
     ]
 }
