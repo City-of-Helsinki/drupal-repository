@@ -75,7 +75,7 @@
             }
         },
         {
-            "name": "drupal/drupal-module-helfi-ahjo-org-chart",
+            "name": "drupal/helfi_ahjo",
             "type": "vcs",
             "url": "git@github.com:City-of-Helsinki/drupal-module-helfi-ahjo-org-chart.git",
             "extra": {
