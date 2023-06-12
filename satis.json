@@ -75,12 +75,12 @@
             }
         },
         {
-            "name": "drupal/helfi_ahjo",
+            "name": "drupal/drupal-module-helfi-ahjo-org-chart",
             "type": "vcs",
-            "url": "git@github.com:city-of-helsinki/drupal-module-helfi-ahjo.git",
+            "url": "git@github.com:City-of-Helsinki/drupal-module-helfi-ahjo-org-chart.git",
             "extra": {
                 "username": "city-of-helsinki",
-                "repository": "drupal-module-helfi-ahjo",
+                "repository": "drupal-module-helfi-ahjo-org-chart",
                 "whitelisted": true
             }
         },
