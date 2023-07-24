@@ -35,6 +35,8 @@ Go to Settings -> Webhooks -> Add webhook
 
 ## Known issues
 
+Running a deployment can sometimes corrupt the Satis database and it must be rebuild manually. The logs should show something like 
+
 ```
 In JsonFile.php line 347:
 "dist/all.json" does not contain valid JSON
