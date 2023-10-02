@@ -22,6 +22,10 @@ jobs:
               with:
                   php-version: '${{ matrix.php-versions }}'
                   tools: composer:v2
+
+            - name: Validate satis.json
+              run: cat satis.json | jq type
+
             - name: Validate composer.json
               run: composer validate
 
