@@ -213,16 +213,6 @@
             "name": "drupal/helfi_gdpr_api",
             "type": "vcs",
             "url": "git@github.com:City-of-Helsinki/drupal-module-helfi-gdpr-api.git"
-        },
-        {
-            "name": "drupal/stomp",
-            "type": "vcs",
-            "url": "git@github.com:City-of-Helsinki/drupal-module-stomp.git",
-            "extra": {
-                "username": "city-of-helsinki",
-                "repository": "drupal-module-stomp",
-                "whitelisted": true
-            }
         }
     ]
 }
