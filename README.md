@@ -46,7 +46,7 @@ Parse error on line 52780:
 Expected one of: 'EOF', '}', ',', ']'
 ```
 
-Rebuild the index by calling `php console.php app:rebuild` inside Webhook container. 
+Rebuild the index by calling `nohup php console.php app:rebuild > /tmp/nohup.out &` inside Webhook container. 
 
 _NOTE_: Rebuilding can take up to 10 minutes.
 
