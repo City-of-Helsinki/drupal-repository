@@ -13,14 +13,14 @@ To use this, your `composer.json` should contain:
 ]
 ```
 
-## Adding a new package 
+## Adding a new package
 
 Your package must contain a `composer.json` file.
 
 - Add your package to [satis.json](/satis.json) file.
 - Add the required webhook: [Update composer repository](#update-composer-repository).
 
-## Available webhooks 
+## Available webhooks
 
 ### Update composer repository
 
@@ -35,7 +35,7 @@ Go to Settings -> Webhooks -> Add webhook
 
 ## Known issues
 
-Running a deployment can sometimes corrupt the Satis database and it must be rebuild manually. The logs should show something like 
+Running a deployment can sometimes corrupt the Satis database and it must be rebuild manually. The logs should show something like
 
 ```
 In JsonFile.php line 347:
@@ -46,7 +46,7 @@ Parse error on line 52780:
 Expected one of: 'EOF', '}', ',', ']'
 ```
 
-Rebuild the index by calling `nohup php console.php app:rebuild > /tmp/nohup.out &` inside `webhook-server-*` container. 
+Rebuild the index by calling `nohup php console.php app:rebuild > /tmp/nohup.out &` inside `webhook-server-*` container.
 
 _NOTE_: Rebuilding can take up to 10 minutes.
 
