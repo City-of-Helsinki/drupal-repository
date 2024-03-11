@@ -27,11 +27,11 @@ Go to your GitHub repository's Settings -> Webhooks -> Add webhook
 - See [Contact](#contact) for secret (`WEBHOOK_UPDATE_SECRET`).
 - Select individual events: `Releases`. **Please remember to unselect all other events**.
 
-## Generate changelog for an "Automatic updates" pull request
+## Generate a changelog for pull requests
+
+This is currently only triggered for [Automatic updates](https://github.com/City-of-Helsinki/drupal-helfi-platform/blob/main/documentation/automatic-updates.md) pull requests.
 
 Generates a changelog for changes between `dev` and `update-config` branches and updates the Automation pull request body field automatically on GitHub.
-
-This is only triggered for [Automatic updates](https://github.com/City-of-Helsinki/drupal-helfi-platform/blob/main/documentation/automatic-updates.md) pull requests.
 
 The values are parsed automatically from Pull request event's payload body by Webhook server. See `update-automation-pull-request` hook in [hooks.json](/hooks.json).
 
