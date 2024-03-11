@@ -1,16 +1,13 @@
 # Documentation
 
-Run `php console.php` to see available console commands.
-See [hooks.json](/hooks.json) to see what command is called for each action.
+Available documentation:
 
-## Production Docker image
+- [Composer repository](/documentation/composer-repository.md)
+- [Automatic changelog](/documentation/automatic-changelog.md)
+
+## Production environment
 
 See https://github.com/City-of-Helsinki/drupal-docker-images/tree/main/openshift/drupal-repository for more information about the underlying Docker image.
-
-## Available webhooks
-
-- [Automatic changelog generation](/documentation/automatic-changelog.md)
-- [Update composer repository](/documentation/composer-repository.md#webhooks)
 
 ## Required environment variables
 
