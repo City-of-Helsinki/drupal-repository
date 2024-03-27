@@ -10,6 +10,7 @@ trait PackageTrait
 
     protected function repositoryToPackageName(string $repository) :? string
     {
+        /** @var object{ name: string, url: string } $item */
         foreach ($this->packages as $item) {
             if (!isset($item->url)) {
                 continue;

@@ -121,6 +121,7 @@ return [
         return isset($item['changelog']) && $item['changelog'] === true;
     }),
     Settings::CHANGELOG_ALLOWED_PACKAGES => array_filter($packages, function (object $package) : bool {
+        /** @var object{ name: string, extra: object{whitelisted: bool, repository: string, username: string }} $package */
         $isWhitelisted = !empty($package->extra->whitelisted);
 
         if ($isWhitelisted && !isset($package->extra->username, $package->extra->repository)) {
