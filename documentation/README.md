@@ -1,5 +1,7 @@
 # Documentation
 
+[![codecov](https://codecov.io/gh/City-of-Helsinki/drupal-repository/graph/badge.svg?token=XTR3QWDS1C)](https://codecov.io/gh/City-of-Helsinki/drupal-repository)
+
 Available documentation:
 
 - [Composer repository](/documentation/composer-repository.md)
