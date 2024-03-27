@@ -28,6 +28,9 @@ class PackageTraitTest extends TestCase
 
         };
         $this->assertEquals('drupal/helfi_api_base', $trait->getPackageName('drupal/helfi_api_base'));
-        $this->assertEquals('drupal/helfi_api_base', $trait->getPackageName('https://github.com/city-of-helsinki/drupal-module-helfi-api-base'));
+        $this->assertEquals(
+            'drupal/helfi_api_base',
+            $trait->getPackageName('https://github.com/city-of-helsinki/drupal-module-helfi-api-base')
+        );
     }
 }

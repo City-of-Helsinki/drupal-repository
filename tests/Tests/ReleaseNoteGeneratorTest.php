@@ -148,5 +148,4 @@ class ReleaseNoteGeneratorTest extends TestCase
         $sut = $this->getSut($client->reveal(), $cache);
         $sut->updateChangelogForRelease('test', 'test', 'head');
     }
-
 }
