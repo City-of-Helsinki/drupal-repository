@@ -22,6 +22,7 @@ jobs:
               uses: shivammathur/setup-php@v2
               with:
                   php-version: '${{ matrix.php-versions }}'
+                  coverage: pcov
                   tools: composer:v2
 
             - name: Validate satis.json
@@ -42,4 +43,10 @@ jobs:
 
             - name: Run PHPUnit tests
               run: |
-                  set -o pipefail && vendor/bin/phpunit --verbose
+                  set -o pipefail && vendor/bin/phpunit --verbose --coverage-clover=coverage.xml
+
+            - name: Upload coverage reports to Codecov
+              uses: codecov/codecov-action@v4.0.1
+              with:
+                token: ${{ secrets.CODECOV_TOKEN }}
+                slug: City-of-Helsinki/drupal-repository
