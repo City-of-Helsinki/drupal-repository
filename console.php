@@ -13,8 +13,8 @@ $builder->useAttributes(true);
 $builder->addDefinitions(__DIR__ . '/config.php');
 
 if (!$appEnv || $appEnv === 'prod') {
-    $builder->enableCompilation(__DIR__ . '/tmp');
-    $builder->writeProxiesToFile(true, __DIR__ . '/tmp/proxies');
+    $builder->enableCompilation('/tmp');
+    $builder->writeProxiesToFile(true, '/tmp/proxies');
 }
 $container = $builder->build();
 
