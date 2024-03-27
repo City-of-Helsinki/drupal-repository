@@ -31,7 +31,10 @@ jobs:
               run: composer validate
 
             - name: Install Composer dependencies
-              run: composer install --prefer-dist --optimize-autoloader --no-progress
+              run: composer install --no-progress
+
+            - name: Run installer
+              run: make
 
             - name: Lint
               run: |

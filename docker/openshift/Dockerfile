@@ -10,4 +10,5 @@ RUN chmod +x /crons/*
 
 WORKDIR /var/www/html
 RUN make && \
-  chmod a+rw $COMPOSER_HOME -R
+  chmod a+rw $COMPOSER_HOME -R && \
+  composer install --no-progress --prefer-dist --no-interaction --no-dev --optimize-autoloader
