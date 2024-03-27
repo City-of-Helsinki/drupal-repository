@@ -40,4 +40,4 @@ URL to Webhook server: https://helfi-webhook.docker.so
 1. Copy request body from `Recent deliveries` tab of your repository
 2. Save the request body to a `body.json` file
 3. Generate a X-Hub-Signature for your request body: `php -r "print hash_hmac('sha1', file_get_contents('body.json'), '{your webhook secret key here}');"`
-4. Send the request: `curl -i -H 'Content-Type: application/json' -H "X-Hub-Signature: sha1={your hash_hmac from previous step }" -X POST https://helfi-webhook.docker.so/hooks/update-release-note --data-binary "@body.json"`
+4. Send the request: `curl -i -H 'Content-Type: application/json' -H "X-Hub-Signature: sha1={your hash_hmac from previous step }" -X POST https://helfi-webhook.docker.so/hooks/update-index --data-binary "@body.json"`
