@@ -6,17 +6,19 @@ namespace App\Commands;
 
 use App\ReleaseNoteGenerator;
 use App\Settings;
+use DI\Attribute\Inject;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 
-abstract class ChangelogGenerator extends Base
+abstract class ChangelogGenerator extends Command
 {
 
     public function __construct(
         protected ReleaseNoteGenerator $generator,
-        Settings $settings,
+        #[Inject(Settings::CHANGELOG_PROJECTS)] private readonly array $projects,
     ) {
-        parent::__construct($settings);
+        parent::__construct();
     }
 
     protected function validateOptions(InputInterface $input, array $required): void
@@ -35,7 +37,7 @@ abstract class ChangelogGenerator extends Base
 
     protected function getProjectSettings(string $projectName) : ? array
     {
-        foreach ($this->settings->get(Settings::CHANGELOG_PROJECTS) as $project) {
+        foreach ($this->projects as $project) {
             ['username' => $username, 'repository' => $repository] = $project;
             $name = strtolower(sprintf('%s/%s', $username, $repository));
 

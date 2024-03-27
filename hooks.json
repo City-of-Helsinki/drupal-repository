@@ -254,7 +254,7 @@
       },
       {
         "source": "string",
-        "name": "app:rebuild"
+        "name": "queue:package"
       },
       {
         "source": "payload",

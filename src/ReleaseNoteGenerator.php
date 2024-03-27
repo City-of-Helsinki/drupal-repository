@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App;
 
+use DI\Attribute\Inject;
 use Github\AuthMethod;
 use Github\Client;
 use Symfony\Contracts\Cache\CacheInterface;
@@ -17,8 +18,8 @@ final class ReleaseNoteGenerator implements ReleaseNoteGeneratorInterface
     public function __construct(
         private readonly Client $client,
         private readonly CacheInterface $cache,
-        private readonly string $authToken,
-        private readonly array $allowedPackages
+        #[Inject(Settings::GITHUB_OAUTH)] private readonly string $authToken,
+        #[Inject(Settings::CHANGELOG_ALLOWED_PACKAGES)] private readonly array $allowedPackages,
     ) {
     }
 
