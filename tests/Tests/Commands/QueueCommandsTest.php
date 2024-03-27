@@ -19,7 +19,7 @@ class QueueCommandsTest extends TestCase
     use ProphecyTrait;
     use TestKernelTrait;
 
-    public const TEST_FILENAME = 'dist/p2/drupal/helfi_api_base.json';
+    public const TEST_FILENAME = __DIR__ . '/../../../dist/p2/drupal/helfi_api_base.json';
 
     protected function setUp(): void
     {
