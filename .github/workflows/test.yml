@@ -4,6 +4,8 @@ on:
     push:
         branches:
             - 3.x
+env:
+  GITHUB_OAUTH: $GITHUB_TOKEN
 jobs:
     build:
         runs-on: ubuntu-latest

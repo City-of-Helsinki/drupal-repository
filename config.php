@@ -116,7 +116,7 @@ return [
     Context::class => (new FsConnectionFactory())->createContext(),
     CacheInterface::class => new FilesystemAdapter(defaultLifetime: 60),
     Settings::ENV => getenv('APP_ENV') ?: 'local',
-    Settings::GITHUB_OAUTH => getenv('GITHUB_OAUTH'),
+    Settings::GITHUB_OAUTH => getenv('GITHUB_OAUTH') ?: '',
     Settings::CHANGELOG_PROJECTS => array_filter($projects, function (array $item) : bool {
         return isset($item['changelog']) && $item['changelog'] === true;
     }),
