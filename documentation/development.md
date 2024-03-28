@@ -29,6 +29,12 @@ and restart the project: `docker compose stop && docker compose up -d`
 
 URL to Satis/Composer index: https://helfi-repository.docker.so
 
+## Xdebug
+
+The following line should work with PHPStorm:
+
+- `PHP_IDE_CONFIG=serverName=app XDEBUG_SESSION_START=1 php console.php`
+
 ## Test webhooks locally
 
 Base URL to Webhook server: https://helfi-webhook.docker.so
