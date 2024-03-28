@@ -4,6 +4,8 @@ on:
     push:
         branches:
             - 3.x
+env:
+  GITHUB_OAUTH: $GITHUB_TOKEN
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -14,13 +16,13 @@ jobs:
         steps:
 
             - name: Checkout code
-              uses: actions/checkout@v3
-              with:
-                  fetch-depth: 1
+              uses: actions/checkout@v4
+
             - name: Setup PHP with composer v2
               uses: shivammathur/setup-php@v2
               with:
                   php-version: '${{ matrix.php-versions }}'
+                  coverage: pcov
                   tools: composer:v2
 
             - name: Validate satis.json
@@ -30,12 +32,23 @@ jobs:
               run: composer validate
 
             - name: Install Composer dependencies
-              run: composer install --prefer-dist --optimize-autoloader --no-progress
+              run: composer install --no-progress
 
-            - name: Lint
-              run: |
-                  vendor/bin/phpcs src tests --standard=PSR2
+            - name: Run installer
+              run: make
+
+            - name: Run phpcs
+              run: vendor/bin/phpcs src tests --standard=PSR2
+
+            - name: Run phpstan
+              run: vendor/bin/phpstan analyze --no-progress
 
             - name: Run PHPUnit tests
               run: |
-                  set -o pipefail && vendor/bin/phpunit --verbose
+                  set -o pipefail && vendor/bin/phpunit --verbose --coverage-clover=coverage.xml
+
+            - name: Upload coverage reports to Codecov
+              uses: codecov/codecov-action@v4.0.1
+              with:
+                token: ${{ secrets.CODECOV_TOKEN }}
+                slug: City-of-Helsinki/drupal-repository

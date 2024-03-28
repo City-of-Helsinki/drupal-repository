@@ -3,132 +3,149 @@
 namespace App\Tests;
 
 use App\CacheTrait;
-use App\MarkdownProcessorTrait;
 use App\ReleaseNoteGenerator;
+use Github\Api\Repo;
+use Github\Api\Repository\Commits;
+use Github\Api\Repository\Contents;
+use Github\Api\Repository\Releases;
 use Github\Client;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Prophecy\Prophecy\ObjectProphecy;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Contracts\Cache\CacheInterface;
 
-/**
- * @coversDefaultClass \App\ReleaseNoteGenerator
- */
 class ReleaseNoteGeneratorTest extends TestCase
 {
     use ProphecyTrait;
+    use TestKernelTrait;
+    use CacheTrait;
 
-    private function getSut(ObjectProphecy $client) : ReleaseNoteGenerator
+    private function getSut(Client $client, ?CacheInterface $cache = null) : ReleaseNoteGenerator
     {
+        if (!$cache) {
+            $cache = $this->prophesize(CacheInterface::class)->reveal();
+        }
         return new ReleaseNoteGenerator(
-            $client->reveal(),
-            $this->prophesize(CacheInterface::class)->reveal(),
-            '123',
-            [],
+            $client,
+            $cache,
+            'authToken',
+            ['drupal/helfi_api_base'],
         );
     }
 
     /**
-     * @covers ::processMarkdown
-     * @dataProvider markdownData
+     * Tests updateChangelogForRelease when there are not enough releases.
      */
-    public function testProcessMarkdown(string $markdown, string $expected): void
+    public function testSkipUpdateChangelogForRelease(): void
     {
-        $trait = new class {
-            use MarkdownProcessorTrait {
-                processMarkdown as public;
-            }
-        };
-        $processed = $trait->processMarkdown($markdown);
-        $this->assertSame($expected, $processed);
-    }
+        $client = $this->prophesize(Client::class);
+        $releases = $this->prophesize(Releases::class);
+        $releases->all('test', 'test')
+            ->shouldBeCalled()
+            ->willReturn([
+                ['id' => 123, 'name' => 'dummy'],
+            ]);
+        $releases->edit(Argument::any(), Argument::any(), Argument::any())
+            ->shouldNotBeCalled();
+        $repo = $this->prophesize(Repo::class);
+        $repo->releases()->willReturn($releases->reveal());
+        $client->repos()->willReturn($repo->reveal());
 
-    public function markdownData(): array
-    {
-        // @codingStandardsIgnoreStart
-        return [
-            [
-                // Given markdown.
-                "## [city-of-helsinki/drupal-hdbt](https://github.com/city-of-helsinki/drupal-hdbt): 4.3.0 to 4.3.2
-### What's Changed
-* Uhf x minor bug fixes2 by @Arkkimaagi in https://github.com/City-of-Helsinki/drupal-hdbt/pull/486
-* UHF-7444: Add check for empty array item for metadata wrapper template by @teroelonen in https://github.com/City-of-Helsinki/drupal-hdbt/pull/484
-
-
-**Full Changelog**: https://github.com/City-of-Helsinki/drupal-module-helfi-tpr/compare/2.1.3...2.1.4
-## [city-of-helsinki/drupal-module-helfi-tunnistamo](https://github.com/city-of-helsinki/drupal-module-helfi-tunnistamo): 2.2.2 to 2.2.3
-### What's Changed
-* UHF-7565: Tunnistamo empty email by @ltpk in https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo/pull/17
-
-### New Contributors
-* @ltpk made their first contribution in https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo/pull/17
-
-**Full Changelog**: https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo/compare/2.2.2...2.2.3",
-                // Expected markdown.
-                "## [city-of-helsinki/drupal-hdbt](https://github.com/city-of-helsinki/drupal-hdbt): 4.3.0 to 4.3.2
-### What's Changed
-* Uhf x minor bug fixes2 in https://github.com/City-of-Helsinki/drupal-hdbt/pull/486
-* [UHF-7444](https://helsinkisolutionoffice.atlassian.net/browse/UHF-7444): Add check for empty array item for metadata wrapper template in https://github.com/City-of-Helsinki/drupal-hdbt/pull/484
-
-
-**Full Changelog**: https://github.com/City-of-Helsinki/drupal-module-helfi-tpr/compare/2.1.3...2.1.4
-## [city-of-helsinki/drupal-module-helfi-tunnistamo](https://github.com/city-of-helsinki/drupal-module-helfi-tunnistamo): 2.2.2 to 2.2.3
-### What's Changed
-* [UHF-7565](https://helsinkisolutionoffice.atlassian.net/browse/UHF-7565): Tunnistamo empty email in https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo/pull/17
-
-**Full Changelog**: https://github.com/City-of-Helsinki/drupal-module-helfi-tunnistamo/compare/2.2.2...2.2.3"
-            ],
-            [
-                // Given markdown.
-                "## [city-of-helsinki/drupal-hdbt](https://github.com/city-of-helsinki/drupal-hdbt): 4.3.2 to 4.3.3
-### What's Changed
-* UHF-7264: Fixed issue with empty tags appearing when the tag was unpu… by @teroelonen in https://github.com/City-of-Helsinki/drupal-hdbt/pull/488
-
-
-**Full Changelog**: https://github.com/City-of-Helsinki/drupal-hdbt/compare/4.3.2...4.3.3
-## [city-of-helsinki/drupal-helfi-platform-config](https://github.com/city-of-helsinki/drupal-helfi-platform-config): 2.15.0 to 2.15.1
-### What's Changed
-* UHF-7419: Accessibility changes to chat button in https://github.com/City-of-Helsinki/drupal-helfi-platform-config/pull/404
-* UHF-7417: Check cookie category before setting. by @Arskiainen in https://github.com/City-of-Helsinki/drupal-helfi-platform-config/pull/401
-
-
-**Full Changelog**: https://github.com/City-of-Helsinki/drupal-helfi-platform-config/compare/2.15.0...2.15.1",
-            // Expected markdown.
-            "## [city-of-helsinki/drupal-hdbt](https://github.com/city-of-helsinki/drupal-hdbt): 4.3.2 to 4.3.3
-### What's Changed
-* [UHF-7264](https://helsinkisolutionoffice.atlassian.net/browse/UHF-7264): Fixed issue with empty tags appearing when the tag was unpu… in https://github.com/City-of-Helsinki/drupal-hdbt/pull/488
-
-
-**Full Changelog**: https://github.com/City-of-Helsinki/drupal-hdbt/compare/4.3.2...4.3.3
-## [city-of-helsinki/drupal-helfi-platform-config](https://github.com/city-of-helsinki/drupal-helfi-platform-config): 2.15.0 to 2.15.1
-### What's Changed
-* [UHF-7419](https://helsinkisolutionoffice.atlassian.net/browse/UHF-7419): Accessibility changes to chat button in https://github.com/City-of-Helsinki/drupal-helfi-platform-config/pull/404
-* [UHF-7417](https://helsinkisolutionoffice.atlassian.net/browse/UHF-7417): Check cookie category before setting. in https://github.com/City-of-Helsinki/drupal-helfi-platform-config/pull/401
-
-
-**Full Changelog**: https://github.com/City-of-Helsinki/drupal-helfi-platform-config/compare/2.15.0...2.15.1"
-            ],
-        ];
-        // @codingStandardsIgnoreEnd
+        $sut = $this->getSut($client->reveal());
+        $sut->updateChangelogForRelease('test', 'test', '123');
     }
 
     /**
-     * @covers ::getCacheKey
+     * Tests updateChangelogForRelease when we fail to parse previous/latest release.
      */
-    public function testGetCacheKey(): void
+    public function testUpdateChangelogForReleaseReleaseException(): void
     {
-        $trait = new class {
-            use CacheTrait {
-                getCacheKey as public;
-            }
-        };
-        $this->assertSame($trait->getCacheKey(
-            'City-of-Helsinki',
-            'drupal-helfi',
-            'dev',
-            'update-configuration',
-        ), 'city-of-helsinki-drupal-helfi-dev-update-configuration');
+        $client = $this->prophesize(Client::class);
+        $releases = $this->prophesize(Releases::class);
+        $releases->all('test', 'test')
+            ->shouldBeCalled()
+            ->willReturn([
+                ['id' => 123, 'name' => 'dummy', 'tag_name' => 'head'],
+                ['id' => 123, 'name' => 'dummy', 'tag_name' => 'base'],
+            ]);
+        $releases->edit(Argument::any(), Argument::any(), Argument::any())
+            ->shouldNotBeCalled();
+        $repo = $this->prophesize(Repo::class);
+        $repo->releases()->willReturn($releases->reveal());
+        $client->repos()->willReturn($repo->reveal());
 
-        $this->assertSame($trait->getCacheKey('helfi', '123'), 'helfi-123');
+        $sut = $this->getSut($client->reveal());
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Failed to parse latest or previous release.');
+        $sut->updateChangelogForRelease('test', 'test', '');
+    }
+
+    public function testUpdateChangelogForRelease(): void
+    {
+        $client = $this->prophesize(Client::class);
+        $client->authenticate('authToken', null, Argument::any())
+            ->shouldBeCalled();
+        $releases = $this->prophesize(Releases::class);
+        $releases->all('test', 'test')
+            ->shouldBeCalled()
+            ->willReturn([
+                ['id' => 1, 'name' => 'dummy', 'tag_name' => 'head'],
+                ['id' => 2, 'name' => 'dummy', 'tag_name' => 'base'],
+            ]);
+        $releases->edit('test', 'test', 1, Argument::any())
+            ->shouldBeCalled();
+        $releases->generateNotes('test', 'test', [
+            'previous_tag_name' => 'base',
+            'target_commitish' => 'head',
+            'tag_name' => 'head',
+        ])
+            ->shouldBeCalled()
+            ->willReturn(['body' => '']);
+
+        $commits = $this->prophesize(Commits::class);
+        $commits->compare('test', 'test', 'base', 'head')
+            ->shouldBeCalled()
+            ->willReturn([
+                'files' => [
+                    ['filename' => 'composer.lock'],
+                ],
+            ]);
+        $repo = $this->prophesize(Repo::class);
+        $repo->commits()
+            ->shouldBeCalled()
+            ->willReturn($commits->reveal());
+        $repo->releases()->willReturn($releases->reveal());
+        $contents = $this->prophesize(Contents::class);
+        $contents
+            ->rawDownload('test', 'test', 'composer.lock', 'base')
+            ->shouldBeCalled()
+            ->willReturn(json_encode([
+                'packages' => [
+                    [
+                        'name' => 'drupal/helfi_api_base',
+                        'version' => '1.2.3'
+                    ],
+                ],
+            ]));
+        $contents
+            ->rawDownload('test', 'test', 'composer.lock', 'head')
+            ->shouldBeCalled()
+            ->willReturn(json_encode([
+                'packages' => [
+                    [
+                        'name' => 'drupal/helfi_api_base',
+                        'version' => '1.2.4'
+                    ],
+                ],
+            ]));
+        $repo->contents()
+            ->shouldBeCalled()
+            ->willReturn($contents->reveal());
+        $client->repos()->willReturn($repo->reveal());
+
+        $cache = new ArrayAdapter();
+        $sut = $this->getSut($client->reveal(), $cache);
+        $sut->updateChangelogForRelease('test', 'test', 'head');
     }
 }
