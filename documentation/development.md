@@ -44,7 +44,7 @@ Example payload body:
 ```json
 {
     "repository": {
-        "full_name": "City-of-Helsinki/drupal-helfi-platform-config"
+        "full_name": "City-of-Helsinki/drupal-module-helfi-api-base"
     }
 }
 ```
