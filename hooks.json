@@ -278,46 +278,6 @@
         }
       ]
     }
-  },
-  {
-    "id": "update-repository",
-    "execute-command": "/usr/bin/make",
-    "command-working-directory": "{{ getenv "PROJECT_DIR" }}",
-    "response-headers":
-    [
-      {
-        "name": "Access-Control-Allow-Origin",
-        "value": "*"
-      }
-    ],
-    "pass-arguments-to-command":
-    [
-      {
-        "source": "string",
-        "name": "update-repository"
-      },
-      {
-        "source": "string",
-        "name": "dist"
-      }
-    ],
-    "trigger-rule":
-    {
-      "and": [
-        {
-          "match":
-          {
-            "type": "payload-hmac-sha1",
-            "secret": "{{ getenv "WEBHOOK_UPDATE_SECRET" }}",
-            "parameter":
-            {
-              "source": "header",
-              "name": "X-Hub-Signature"
-            }
-          }
-        }
-      ]
-    }
   }
 ]
 
