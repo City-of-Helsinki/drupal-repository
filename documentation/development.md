@@ -5,6 +5,8 @@
 These environment variables must be added to `.env` file:
 
 ```
+# Your Personal Access Token (PAT). See:
+# https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
 # This is used to authenticate against GitHub so we don't instantly hit the API rate limit
 GITHUB_OAUTH=your-github-oauth-token
 # This is used to update individual packages (satis rebuilds)
