@@ -12,10 +12,6 @@ $builder = new ContainerBuilder();
 $builder->useAttributes(true);
 $builder->addDefinitions(__DIR__ . '/config.php');
 
-if (!$appEnv || $appEnv === 'prod') {
-    $builder->enableCompilation('/tmp');
-    $builder->writeProxiesToFile(true, '/tmp/proxies');
-}
 $container = $builder->build();
 
 $application = Kernel::boot($container);
