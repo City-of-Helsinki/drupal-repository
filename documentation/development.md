@@ -2,7 +2,10 @@
 
 ## Required environment variables
 
+These environment variables must be added to `.env` file:
+
 ```
+# This is used to authenticate against GitHub so we don't instantly hit the API rate limit
 GITHUB_OAUTH=your-github-oauth-token
 # This is used to update individual packages (satis rebuilds)
 WEBHOOK_SECRET=your-webhook-secret
@@ -28,7 +31,7 @@ URL to Satis/Composer index: https://helfi-repository.docker.so
 
 Base URL to Webhook server: https://helfi-webhook.docker.so
 
-1. Copy payload body from `Recent deliveries` webhook tab on GitHub (Settings -> Webhooks -> Edit -> Recent deliveries). For example:
+1. Copy payload body from `Recent deliveries` webhook tab on GitHub (`Settings` -> `Webhooks` -> `Edit` -> `Recent deliveries`)
 2. Save the request body to a `body.json` file
 3. Generate an X-Hub-Signature for your request body: `php -r "print hash_hmac('sha1', file_get_contents('body.json'), '{your webhook secret key here}');"`
 4. Send the request using CURL
