@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Commands;
 
 use App\Settings;
+use DI\Attribute\Inject;
 use Github\AuthMethod;
 use Github\Client;
 use Github\Exception\ExceptionInterface;
@@ -17,13 +18,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand(
     name: 'app:dispatch',
 )]
-final class TriggerDispatchEvent extends Base
+final class TriggerDispatchEvent extends Command
 {
     public function __construct(
-        private Client $client,
-        Settings $settings,
+        private readonly Client $client,
+        #[Inject(Settings::DISPATCH_TRIGGER)] private readonly array $triggers,
+        #[Inject(Settings::GITHUB_OAUTH)] private readonly string $authToken,
     ) {
-        parent::__construct($settings);
+        parent::__construct();
     }
 
     protected function configure(): void
@@ -39,23 +41,19 @@ final class TriggerDispatchEvent extends Base
 
     public function execute(InputInterface $input, OutputInterface $output) : int
     {
-        $this
-            ->ensureInstallation($output);
-
         $workflowId = $input->getArgument('workflowId');
-        $setting    = $this->settings->get(Settings::DISPATCH_TRIGGER);
 
-        if (!isset($setting[$workflowId])) {
+        if (!isset($this->triggers[$workflowId])) {
             throw new \InvalidArgumentException('Settings for given workflowId not found.');
         }
 
         $this->client->authenticate(
-            $this->settings->get(Settings::GITHUB_OAUTH),
+            $this->authToken,
             authMethod: AuthMethod::ACCESS_TOKEN
         );
 
         $exception = null;
-        foreach ($setting[$workflowId] as $setting) {
+        foreach ($this->triggers[$workflowId] as $setting) {
             [
                 'username' => $username,
                 'repository' => $repository,

@@ -6,21 +6,11 @@ namespace App;
 
 final class Settings
 {
-    public const DISPATCH_TRIGGER = 'dispatch-triggers';
-    public const GITHUB_OAUTH = 'GITHUB_OAUTH';
-    public const ENV = 'APP_ENV';
-    public const CHANGELOG_PROJECTS = 'projects';
-    public const CHANGELOG_ALLOWED_PACKAGES = 'packages';
-
-    public function __construct(private array $config)
-    {
-    }
-
-    public function get(string $name) : array|string
-    {
-        if (!isset($this->config[$name])) {
-            throw new \InvalidArgumentException("Configuration $name does not exist.");
-        }
-        return $this->config[$name];
-    }
+    public const PACKAGE_QUEUE = 'package-queue';
+    public const DISPATCH_TRIGGER = 'setting.dispatch-triggers';
+    public const GITHUB_OAUTH = 'setting.github_oauth';
+    public const ENV = 'setting.env';
+    public const CHANGELOG_PROJECTS = 'setting.changelog-projects';
+    public const CHANGELOG_ALLOWED_PACKAGES = 'setting.changelog-allowed-packages';
+    public const PACKAGES_LIST = 'setting.packages-list';
 }
