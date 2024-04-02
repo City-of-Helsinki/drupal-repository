@@ -5,3 +5,6 @@
 data.json
 test.php
 .phpunit.cache
+
+# Ignore the folder created by PhpStorm
+.idea/*
