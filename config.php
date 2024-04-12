@@ -103,6 +103,12 @@ $projects = [
         'dispatch-triggers' => ['config-update'],
         'changelog' => false,
     ],
+    [
+        'username' => 'city-of-helsinki',
+        'repository' => 'drupal-infofinland',
+        'dispatch-triggers' => ['config-update'],
+        'changelog' => false,
+    ],
 ];
 
 $data = json_decode(file_get_contents('satis.json'));
