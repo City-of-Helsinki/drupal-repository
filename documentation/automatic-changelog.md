@@ -14,7 +14,7 @@ The values are parsed automatically from Release event's payload body by Webhook
 
 To test this locally, run: `php console.php changelog:project-release --project {project name} --base {the newer release} --head {the previous release}`
 
-The `{project name}` is the combination of `username` and `repository`, separated by `/` from `$projects` array in [console.php](/console.php). For example `city-of-helsinki/drupal-helfi-kymp`.
+The `{project name}` is the combination of `username` and `repository`, separated by `/` from `$projects` array in [config.php](/config.php). For example `city-of-helsinki/drupal-helfi-kymp`.
 
 ### Using this in your project
 
@@ -37,7 +37,7 @@ The values are parsed automatically from Pull request event's payload body by We
 
 To test this locally, run: `php console.php changelog:automatin-pull-request --project {project name} --base {the newer release} --head {the previous release} --number {the number of the pull request to update} `
 
-The `{project name}` is the combination of `username` and `repository`, separated by `/` from `$projects` array in [console.php](/console.php). For example `city-of-helsinki/drupal-helfi-kymp`.
+The `{project name}` is the combination of `username` and `repository`, separated by `/` from `$projects` array in [config.php](/config.php). For example `city-of-helsinki/drupal-helfi-kymp`.
 
 ### Using this in your project
 
