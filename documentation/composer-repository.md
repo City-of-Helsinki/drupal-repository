@@ -31,20 +31,9 @@ Go to your GitHub repository's Settings -> Webhooks -> Add webhook
 - Events: `Send everything`
 - Secret can be found on [Composer repository](https://helsinkisolutionoffice.atlassian.net/wiki/spaces/HEL/pages/6501891919/Composer+repository) confluence page.
 
-## Known issues
+## Development
 
-Running a deployment can sometimes corrupt the Satis index, and it must be rebuilt manually. The logs should show something like
-
-```
-In JsonFile.php line 347:
-"dist/all.json" does not contain valid JSON
-Parse error on line 52780:
-...} } }}ev": {
-------------------^
-Expected one of: 'EOF', '}', ',', ']'
-```
-
-Rebuild the index by calling `nohup php console.php app:rebuild > /tmp/nohup.out &` inside `webhook-server-*` container.
+You can rebuild the entire index by calling `php console.php queue:package ` inside `webhook-server-*` container. This will queue the index to be rebuilt.
 
 _NOTE_: Rebuilding can take up to 10 minutes.
 
