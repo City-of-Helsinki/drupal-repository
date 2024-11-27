@@ -21,7 +21,7 @@ To start the application, run:
 
 - `docker compose up -d`
 
-To rebuild the locale Docker image, run:
+To rebuild the local Docker image, run:
 
 - `docker compose build`
 
