@@ -29,6 +29,28 @@ and restart the project: `docker compose stop && docker compose up -d`
 
 URL to Satis/Composer index: https://helfi-repository.docker.so
 
+## Testing production image on local
+
+Modify `app` service in `docker-compose.yaml` file:
+- Change `build -> dockerfile` to `docker/openshift/Dockerfile` 
+- Disable all volume definitions
+
+Something like:
+```diff
+-    build: .
+-    volumes:
+-      - .:/app:delegated
+-      - ./hooks.json:/etc/webhook/hooks.json
+-    environment:
+-      PROJECT_DIR: /app
++    build:
++      context: .
++      dockerfile: docker/openshift/Dockerfile
++    #volumes:
++    #  - .:/var/www/html:delegated
++    #  - ./hooks.json:/etc/webhook/hooks.json
+```
+
 ## Xdebug
 
 The following line should work with PHPStorm:

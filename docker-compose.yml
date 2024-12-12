@@ -1,12 +1,12 @@
 services:
   app:
     container_name: "drupal-repository-webhook"
-    build: .
+    build:
+      context: .
+      dockerfile: docker/local/Dockerfile
     volumes:
-      - .:/app:delegated
+      - .:/var/www/html:delegated
       - ./hooks.json:/etc/webhook/hooks.json
-    environment:
-      PROJECT_DIR: /app
     env_file:
       - .env
     labels:

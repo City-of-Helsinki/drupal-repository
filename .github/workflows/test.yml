@@ -6,13 +6,14 @@ on:
             - 3.x
 env:
   GITHUB_OAUTH: $GITHUB_TOKEN
+  COMPOSER_HOME: /tmp
 jobs:
     build:
         runs-on: ubuntu-latest
         strategy:
             fail-fast: false
             matrix:
-                php-versions: ['8.2']
+                php-versions: ['8.3']
         steps:
 
             - name: Checkout code
