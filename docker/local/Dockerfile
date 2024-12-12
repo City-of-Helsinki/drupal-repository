@@ -8,3 +8,9 @@ RUN { \
     echo 'xdebug.client_host=host.docker.internal'; \
     echo 'xdebug.idekey=PHPSTORM'; \
 	} > /etc/php83/conf.d/50_xdebug.ini
+
+WORKDIR /
+COPY Makefile .env /
+RUN make
+
+WORKDIR $PROJECT_DIR
