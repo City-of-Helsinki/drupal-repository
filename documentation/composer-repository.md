@@ -33,7 +33,7 @@ Go to your GitHub repository's Settings -> Webhooks -> Add webhook
 
 ## Development
 
-You can rebuild the entire index by calling `php console.php queue:package ` inside `webhook-server-*` container. This will queue the index to be rebuilt.
+You can rebuild the entire index by calling `php console.php queue:package all` inside `webhook-server-*` container. This will queue the index to be rebuilt.
 
 _NOTE_: Rebuilding can take up to 10 minutes.
 
