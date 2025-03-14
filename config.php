@@ -71,31 +71,31 @@ $projects = [
         'username' => 'city-of-helsinki',
         'repository' => 'drupal-helfi-form-tool',
         'dispatch-triggers' => ['config-update'],
-        'changelog' => false,
+        'changelog' => true,
     ],
     [
         'username' => 'city-of-helsinki',
         'repository' => 'hel-fi-drupal-grants',
         'dispatch-triggers' => ['config-update'],
-        'changelog' => false,
+        'changelog' => true,
     ],
     [
         'username' => 'city-of-helsinki',
         'repository' => 'drupal-emergency-site',
         'dispatch-triggers' => ['config-update'],
-        'changelog' => false,
+        'changelog' => true,
     ],
     [
         'username' => 'city-of-helsinki',
         'repository' => 'helsinki-paatokset',
         'dispatch-triggers' => ['config-update'],
-        'changelog' => false,
+        'changelog' => true,
     ],
     [
         'username' => 'city-of-helsinki',
         'repository' => 'drupal-palvelukeskus',
         'dispatch-triggers' => ['config-update'],
-        'changelog' => false,
+        'changelog' => true,
     ],
     [
         'username' => 'city-of-helsinki',
@@ -107,13 +107,13 @@ $projects = [
         'username' => 'city-of-helsinki',
         'repository' => 'drupal-infofinland',
         'dispatch-triggers' => ['config-update'],
-        'changelog' => false,
+        'changelog' => true,
     ],
     [
         'username' => 'city-of-helsinki',
         'repository' => 'drupal-kaupunkitieto',
         'dispatch-triggers' => ['config-update'],
-        'changelog' => false,
+        'changelog' => true,
     ],
 ];
 
