@@ -213,6 +213,11 @@
             "name": "drupal/helfi_gdpr_api",
             "type": "vcs",
             "url": "git@github.com:City-of-Helsinki/drupal-module-helfi-gdpr-api.git"
+        },
+        {
+          "name": "drupal/helfi_hakuvahti",
+          "type": "vcs",
+          "url": "git@github.com:City-of-Helsinki/drupal-module-helfi-hakuvahti.git"
         }
     ]
 }
