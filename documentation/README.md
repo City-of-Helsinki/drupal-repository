@@ -8,4 +8,4 @@ Available documentation:
 
 ## Production environment
 
-See https://github.com/City-of-Helsinki/drupal-docker-images/tree/main/openshift/drupal-repository for more information about the underlying Docker image.
+See https://github.com/City-of-Helsinki/drupal-docker-images/tree/main/drupal-repository for more information about the underlying Docker image.
