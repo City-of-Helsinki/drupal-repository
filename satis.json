@@ -213,6 +213,11 @@
             "name": "drupal/helfi_gdpr_api",
             "type": "vcs",
             "url": "git@github.com:City-of-Helsinki/drupal-module-helfi-gdpr-api.git"
+        },
+        {
+            "name": "city-of-helsinki/php-logger-extra",
+            "type": "vcs",
+            "url": "git@github.com:City-of-Helsinki/php-logger-extra.git"
         }
     ]
 }
