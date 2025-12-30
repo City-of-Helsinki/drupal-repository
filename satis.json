@@ -218,6 +218,11 @@
             "name": "city-of-helsinki/php-logger-extra",
             "type": "vcs",
             "url": "git@github.com:City-of-Helsinki/php-logger-extra.git"
+        },
+        {
+            "name": "city-of-helsinki/php-resilient-logger",
+            "type": "vcs",
+            "url": "git@github.com:City-of-Helsinki/php-resilient-logger.git"
         }
     ]
 }
