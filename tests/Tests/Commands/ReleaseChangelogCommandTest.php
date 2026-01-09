@@ -30,7 +30,7 @@ class ReleaseChangelogCommandTest extends TestCase
         $this->expectExceptionMessage($expectedExceptionMessage);
         $container = $this->getContainer($settings);
         $application = new Application();
-        $application->add($container->get(ReleaseChangelog::class));
+        $application->addCommand($container->get(ReleaseChangelog::class));
         $application->setAutoExit(false);
         $applicationTest = new ApplicationTester($application);
         $applicationTest->run(['changelog:project-release']);
@@ -69,7 +69,7 @@ class ReleaseChangelogCommandTest extends TestCase
             Settings::CHANGELOG_PROJECTS => [],
         ]);
         $application = new Application();
-        $application->add($container->get(ReleaseChangelog::class));
+        $application->addCommand($container->get(ReleaseChangelog::class));
         $application->setAutoExit(false);
         $applicationTest = new ApplicationTester($application);
         $applicationTest->run($input, [

@@ -17,11 +17,11 @@ class Kernel
     public static function boot(Container $container): Application
     {
         $application = new Application();
-        $application->add($container->get(Consumer::class));
-        $application->add($container->get(PackageIndexQueue::class));
-        $application->add($container->get(ReleaseChangelog::class));
-        $application->add($container->get(AutomationPullRequestChangelog::class));
-        $application->add($container->get(TriggerDispatchEvent::class));
+        $application->addCommand($container->get(Consumer::class));
+        $application->addCommand($container->get(PackageIndexQueue::class));
+        $application->addCommand($container->get(ReleaseChangelog::class));
+        $application->addCommand($container->get(AutomationPullRequestChangelog::class));
+        $application->addCommand($container->get(TriggerDispatchEvent::class));
         return $application;
     }
 }

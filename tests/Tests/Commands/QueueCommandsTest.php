@@ -39,8 +39,8 @@ class QueueCommandsTest extends TestCase
             ],
         ]);
         $application = new Application();
-        $application->add($container->get(PackageIndexQueue::class));
-        $application->add($container->get(Consumer::class));
+        $application->addCommand($container->get(PackageIndexQueue::class));
+        $application->addCommand($container->get(Consumer::class));
         $application->setAutoExit(false);
         $applicationTest = new ApplicationTester($application);
         $applicationTest->run(['queue:package', 'package' => 'drupal/helfi_api_base']);
