@@ -69,12 +69,6 @@ $projects = [
     ],
     [
         'username' => 'city-of-helsinki',
-        'repository' => 'drupal-helfi-form-tool',
-        'dispatch-triggers' => ['config-update'],
-        'changelog' => true,
-    ],
-    [
-        'username' => 'city-of-helsinki',
         'repository' => 'hel-fi-drupal-grants',
         'dispatch-triggers' => ['config-update'],
         'changelog' => true,
@@ -94,18 +88,6 @@ $projects = [
     [
         'username' => 'city-of-helsinki',
         'repository' => 'drupal-palvelukeskus',
-        'dispatch-triggers' => ['config-update'],
-        'changelog' => true,
-    ],
-    [
-        'username' => 'city-of-helsinki',
-        'repository' => 'drupal-helfi-platform-test',
-        'dispatch-triggers' => ['config-update'],
-        'changelog' => false,
-    ],
-    [
-        'username' => 'city-of-helsinki',
-        'repository' => 'drupal-infofinland',
         'dispatch-triggers' => ['config-update'],
         'changelog' => true,
     ],
