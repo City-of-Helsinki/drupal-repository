@@ -97,6 +97,12 @@ $projects = [
         'dispatch-triggers' => ['config-update'],
         'changelog' => true,
     ],
+    [
+        'username' => 'city-of-helsinki',
+        'repository' => 'historiaportaali',
+        'dispatch-triggers' => ['config-update'],
+        'changelog' => false,
+    ],
 ];
 
 $data = json_decode(file_get_contents('satis.json'));
