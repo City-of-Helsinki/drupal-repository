@@ -8,6 +8,7 @@ use App\Commands\ReleaseChangelog;
 use App\Settings;
 use App\Tests\TestKernelTrait;
 use DI\DependencyException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Symfony\Component\Console\Application;
@@ -18,9 +19,7 @@ class ReleaseChangelogCommandTest extends TestCase
     use ProphecyTrait;
     use TestKernelTrait;
 
-    /**
-     * @dataProvider changelogArgumentExceptionData
-     */
+    #[DataProvider('changelogArgumentExceptionData')]
     public function testReleaseChangeLogExceptions(
         array $settings,
         string $expectedExceptionMessage,
@@ -36,7 +35,7 @@ class ReleaseChangelogCommandTest extends TestCase
         $applicationTest->run(['changelog:project-release']);
     }
 
-    public function changelogArgumentExceptionData(): array
+    public static function changelogArgumentExceptionData(): array
     {
         return [
             [
@@ -57,9 +56,7 @@ class ReleaseChangelogCommandTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider requiredArgumentsData
-     */
+    #[DataProvider('requiredArgumentsData')]
     public function testRequiredArguments(array $input, string $expectedOutput): void
     {
         $container = $this->getContainer([
@@ -79,7 +76,7 @@ class ReleaseChangelogCommandTest extends TestCase
         $this->assertStringContainsString($expectedOutput, $output);
     }
 
-    public function requiredArgumentsData(): array
+    public static function requiredArgumentsData(): array
     {
         return [
             [

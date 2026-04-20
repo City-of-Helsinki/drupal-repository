@@ -3,14 +3,13 @@
 namespace App\Tests;
 
 use App\MarkdownProcessorTrait;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class MarkdownGeneratorTest extends TestCase
 {
 
-    /**
-     * @dataProvider markdownData
-     */
+    #[DataProvider('markdownData')]
     public function testProcessMarkdown(string $markdown, string $expected): void
     {
         $trait = new class {
@@ -22,7 +21,7 @@ class MarkdownGeneratorTest extends TestCase
         $this->assertSame($expected, $processed);
     }
 
-    public function markdownData(): array
+    public static function markdownData(): array
     {
         // @codingStandardsIgnoreStart
         return [
