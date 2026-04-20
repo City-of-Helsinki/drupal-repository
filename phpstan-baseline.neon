@@ -1,0 +1,205 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Offset ''changelog'' on array\{username\: ''city\-of\-helsinki'', repository\: ''drupal\-emergency…''\|''drupal\-helfi…''\|''drupal\-helfi\-etusivu''\|''drupal\-helfi\-kuva''\|''drupal\-helfi\-kymp''\|''drupal\-helfi\-rekry''\|''drupal\-helfi\-sote''\|''drupal\-helfi\-tyo…''\|''drupal\-kaupunkitieto''\|''drupal\-palvelukeskus''\|''hel\-fi\-drupal\-grants''\|''helsinki\-paatokset'', dispatch\-triggers\: array\{''config\-update''\}, changelog\: true\}\|array\{username\: ''city\-of\-helsinki'', repository\: ''historiaportaali'', dispatch\-triggers\: array\{''config\-update''\}, changelog\: false\} in isset\(\) always exists and is not nullable\.$#'
+			identifier: isset.offset
+			count: 1
+			path: config.php
+
+		-
+			message: '#^Parameter \#1 \$json of function json_decode expects string, string\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: config.php
+
+		-
+			message: '#^Method App\\Commands\\ChangelogGenerator\:\:__construct\(\) has parameter \$projects with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Commands/ChangelogGenerator.php
+
+		-
+			message: '#^Method App\\Commands\\ChangelogGenerator\:\:getProjectSettings\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Commands/ChangelogGenerator.php
+
+		-
+			message: '#^Method App\\Commands\\ChangelogGenerator\:\:validateOptions\(\) has parameter \$required with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Commands/ChangelogGenerator.php
+
+		-
+			message: '#^Method App\\Commands\\PackageIndexQueue\:\:__construct\(\) has parameter \$packages with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Commands/PackageIndexQueue.php
+
+		-
+			message: '#^Method App\\Commands\\TriggerDispatchEvent\:\:__construct\(\) has parameter \$triggers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Commands/TriggerDispatchEvent.php
+
+		-
+			message: '#^Method App\\Queue\\WorkerInterface\:\:process\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Queue/WorkerInterface.php
+
+		-
+			message: '#^Method App\\ReleaseNoteGenerator\:\:__construct\(\) has parameter \$allowedPackages with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ReleaseNoteGenerator.php
+
+		-
+			message: '#^Method App\\ReleaseNoteGenerator\:\:createNote\(\) has parameter \$version with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ReleaseNoteGenerator.php
+
+		-
+			message: '#^Method App\\ReleaseNoteGenerator\:\:createNote\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: src/ReleaseNoteGenerator.php
+
+		-
+			message: '#^Method App\\ReleaseNoteGenerator\:\:getComposerPackageVersions\(\) has parameter \$repository with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/ReleaseNoteGenerator.php
+
+		-
+			message: '#^Method App\\ReleaseNoteGenerator\:\:getComposerPackageVersions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ReleaseNoteGenerator.php
+
+		-
+			message: '#^Method App\\ReleaseNoteGenerator\:\:getUpdatedDependencies\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ReleaseNoteGenerator.php
+
+		-
+			message: '#^Parameter \#1 \$json of function json_decode expects string, array\|string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/ReleaseNoteGenerator.php
+
+		-
+			message: '#^Method App\\Tests\\Commands\\QueueCommandsTest\:\:createMockHistoryMiddlewareHttpClient\(\) has parameter \$container with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/Tests/Commands/QueueCommandsTest.php
+
+		-
+			message: '#^Method App\\Tests\\Commands\\QueueCommandsTest\:\:getContainer\(\) has parameter \$settings with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/Tests/Commands/QueueCommandsTest.php
+
+		-
+			message: '#^Parameter &\$container by\-ref type of method App\\Tests\\Commands\\QueueCommandsTest\:\:createMockHistoryMiddlewareHttpClient\(\) expects array, array\|ArrayAccess\<int, array\> given\.$#'
+			identifier: parameterByRef.type
+			count: 1
+			path: tests/Tests/Commands/QueueCommandsTest.php
+
+		-
+			message: '#^Method App\\Tests\\Commands\\ReleaseChangelogCommandTest\:\:changelogArgumentExceptionData\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/Tests/Commands/ReleaseChangelogCommandTest.php
+
+		-
+			message: '#^Method App\\Tests\\Commands\\ReleaseChangelogCommandTest\:\:createMockHistoryMiddlewareHttpClient\(\) has parameter \$container with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/Tests/Commands/ReleaseChangelogCommandTest.php
+
+		-
+			message: '#^Method App\\Tests\\Commands\\ReleaseChangelogCommandTest\:\:getContainer\(\) has parameter \$settings with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/Tests/Commands/ReleaseChangelogCommandTest.php
+
+		-
+			message: '#^Method App\\Tests\\Commands\\ReleaseChangelogCommandTest\:\:requiredArgumentsData\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/Tests/Commands/ReleaseChangelogCommandTest.php
+
+		-
+			message: '#^Method App\\Tests\\Commands\\ReleaseChangelogCommandTest\:\:testReleaseChangeLogExceptions\(\) has parameter \$settings with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/Tests/Commands/ReleaseChangelogCommandTest.php
+
+		-
+			message: '#^Method App\\Tests\\Commands\\ReleaseChangelogCommandTest\:\:testRequiredArguments\(\) has parameter \$input with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/Tests/Commands/ReleaseChangelogCommandTest.php
+
+		-
+			message: '#^Parameter \#1 \$exception of method PHPUnit\\Framework\\TestCase\:\:expectException\(\) expects class\-string\<Throwable\>, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Tests/Commands/ReleaseChangelogCommandTest.php
+
+		-
+			message: '#^Parameter &\$container by\-ref type of method App\\Tests\\Commands\\ReleaseChangelogCommandTest\:\:createMockHistoryMiddlewareHttpClient\(\) expects array, array\|ArrayAccess\<int, array\> given\.$#'
+			identifier: parameterByRef.type
+			count: 1
+			path: tests/Tests/Commands/ReleaseChangelogCommandTest.php
+
+		-
+			message: '#^Method App\\Tests\\KernelTest\:\:createMockHistoryMiddlewareHttpClient\(\) has parameter \$container with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/Tests/KernelTest.php
+
+		-
+			message: '#^Method App\\Tests\\KernelTest\:\:getContainer\(\) has parameter \$settings with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/Tests/KernelTest.php
+
+		-
+			message: '#^Parameter &\$container by\-ref type of method App\\Tests\\KernelTest\:\:createMockHistoryMiddlewareHttpClient\(\) expects array, array\|ArrayAccess\<int, array\> given\.$#'
+			identifier: parameterByRef.type
+			count: 1
+			path: tests/Tests/KernelTest.php
+
+		-
+			message: '#^Method App\\Tests\\MarkdownGeneratorTest\:\:markdownData\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/Tests/MarkdownGeneratorTest.php
+
+		-
+			message: '#^Property class@anonymous/tests/Tests/PackageTraitTest\.php\:14\:\:\$packages type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/Tests/PackageTraitTest.php
+
+		-
+			message: '#^Method App\\Tests\\ReleaseNoteGeneratorTest\:\:createMockHistoryMiddlewareHttpClient\(\) has parameter \$container with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/Tests/ReleaseNoteGeneratorTest.php
+
+		-
+			message: '#^Method App\\Tests\\ReleaseNoteGeneratorTest\:\:getContainer\(\) has parameter \$settings with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/Tests/ReleaseNoteGeneratorTest.php
+
+		-
+			message: '#^Parameter &\$container by\-ref type of method App\\Tests\\ReleaseNoteGeneratorTest\:\:createMockHistoryMiddlewareHttpClient\(\) expects array, array\|ArrayAccess\<int, array\> given\.$#'
+			identifier: parameterByRef.type
+			count: 1
+			path: tests/Tests/ReleaseNoteGeneratorTest.php
