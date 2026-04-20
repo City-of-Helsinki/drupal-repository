@@ -17,10 +17,10 @@ jobs:
         steps:
 
             - name: Checkout code
-              uses: actions/checkout@v4
+              uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
             - name: Setup PHP with composer v2
-              uses: shivammathur/setup-php@v2
+              uses: shivammathur/setup-php@accd6127cb78bee3e8082180cb391013d204ef9f # 2.37.0
               with:
                   php-version: '${{ matrix.php-versions }}'
                   coverage: pcov
@@ -46,10 +46,10 @@ jobs:
 
             - name: Run PHPUnit tests
               run: |
-                  set -o pipefail && vendor/bin/phpunit --verbose --coverage-clover=coverage.xml
+                  set -o pipefail && vendor/bin/phpunit --coverage-clover=coverage.xml
 
             - name: Upload coverage reports to Codecov
-              uses: codecov/codecov-action@v4.0.1
+              uses: codecov/codecov-action@57e3a136b779b570ffcdbf80b3bdc90e7fab3de2 # v6.0.0
               with:
                 token: ${{ secrets.CODECOV_TOKEN }}
                 slug: City-of-Helsinki/drupal-repository
