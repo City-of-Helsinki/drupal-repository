@@ -46,7 +46,7 @@ jobs:
 
             - name: Run PHPUnit tests
               run: |
-                  set -o pipefail && vendor/bin/phpunit --verbose --coverage-clover=coverage.xml
+                  set -o pipefail && vendor/bin/phpunit --coverage-clover=coverage.xml
 
             - name: Upload coverage reports to Codecov
               uses: codecov/codecov-action@v4.0.1
