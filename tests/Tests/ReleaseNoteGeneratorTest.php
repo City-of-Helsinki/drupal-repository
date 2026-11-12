@@ -254,7 +254,8 @@ class ReleaseNoteGeneratorTest extends TestCase
         $expected = "\n## [org/hdbt](https://github.com/org/hdbt): 1.0.0 to 1.1.0\n" .
             "### What's Changed\n" .
             "* Fix typo in https://github.com/org/hdbt/pull/11\n" .
-            "* [UHF-1](https://helsinkisolutionoffice.atlassian.net/browse/UHF-1): Add feature in https://github.com/org/hdbt/pull/10\n" .
+            "* [UHF-1](https://helsinkisolutionoffice.atlassian.net/browse/UHF-1): " .
+            "Add feature in https://github.com/org/hdbt/pull/10\n" .
             "\n" .
             "**Full Changelog**: https://github.com/org/hdbt/compare/1.0.0...1.1.0\n";
 
