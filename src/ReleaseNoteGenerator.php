@@ -28,10 +28,6 @@ final class ReleaseNoteGenerator implements ReleaseNoteGeneratorInterface
         $key = $this->getCacheKey('create-note', $username, $repository, $version['base'], $version['head']);
 
         return $this->cache->get($key, function (ItemInterface $item) use ($username, $repository, $version) {
-            $this
-                ->client
-                ->authenticate($this->authToken, authMethod: AuthMethod::ACCESS_TOKEN);
-
             $note = $this
                 ->client
                 ->repos()
@@ -172,6 +168,18 @@ final class ReleaseNoteGenerator implements ReleaseNoteGeneratorInterface
         return $changelog;
     }
 
+    /**
+     * Authenticates the client.
+     *
+     * Must be called before any API request, so we don't hit the
+     * unauthenticated rate limit (60 requests/hour per IP).
+     */
+    private function authenticate(): void
+    {
+        $this->client
+            ->authenticate($this->authToken, authMethod: AuthMethod::ACCESS_TOKEN);
+    }
+
     public function updateChangelogForPullRequest(
         string $username,
         string $repository,
@@ -179,6 +187,8 @@ final class ReleaseNoteGenerator implements ReleaseNoteGeneratorInterface
         string $head,
         string $pullRequest
     ): void {
+        $this->authenticate();
+
         $changelog = $this->createChangelog(
             $username,
             $repository,
@@ -187,8 +197,10 @@ final class ReleaseNoteGenerator implements ReleaseNoteGeneratorInterface
             false
         );
 
-        $this->client
-            ->authenticate($this->authToken, authMethod: AuthMethod::ACCESS_TOKEN);
+        // Leave the existing body untouched if there's nothing to report.
+        if ($changelog === null) {
+            return;
+        }
 
         $this->client
             ->pullRequests()
@@ -202,6 +214,8 @@ final class ReleaseNoteGenerator implements ReleaseNoteGeneratorInterface
         string $repository,
         string $base,
     ): void {
+        $this->authenticate();
+
         // Releases API returns 30 releases per page. This *will* fail for
         // releases older than that.
         $releases = $this->client->repos()->releases()->all($username, $repository);
@@ -239,8 +253,11 @@ final class ReleaseNoteGenerator implements ReleaseNoteGeneratorInterface
                 true
             );
 
-        $this->client
-            ->authenticate($this->authToken, authMethod: AuthMethod::ACCESS_TOKEN);
+        // Keep the existing release notes (e.g. GitHub's auto-generated
+        // "What's Changed" section) if there's nothing to report.
+        if ($changelog === null) {
+            return;
+        }
 
         $this->client
             ->repos()

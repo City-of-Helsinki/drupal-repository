@@ -4,6 +4,7 @@ namespace App\Tests;
 
 use App\CacheTrait;
 use App\ReleaseNoteGenerator;
+use Github\Api\PullRequest;
 use Github\Api\Repo;
 use Github\Api\Repository\Commits;
 use Github\Api\Repository\Contents;
@@ -40,6 +41,8 @@ class ReleaseNoteGeneratorTest extends TestCase
     public function testSkipUpdateChangelogForRelease(): void
     {
         $client = $this->prophesize(Client::class);
+        $client->authenticate('authToken', null, Argument::any())
+            ->shouldBeCalled();
         $releases = $this->prophesize(Releases::class);
         $releases->all('test', 'test')
             ->shouldBeCalled()
@@ -62,6 +65,8 @@ class ReleaseNoteGeneratorTest extends TestCase
     public function testUpdateChangelogForReleaseReleaseException(): void
     {
         $client = $this->prophesize(Client::class);
+        $client->authenticate('authToken', null, Argument::any())
+            ->shouldBeCalled();
         $releases = $this->prophesize(Releases::class);
         $releases->all('test', 'test')
             ->shouldBeCalled()
@@ -147,5 +152,63 @@ class ReleaseNoteGeneratorTest extends TestCase
         $cache = new ArrayAdapter();
         $sut = $this->getSut($client->reveal(), $cache);
         $sut->updateChangelogForRelease('test', 'test', 'head');
+    }
+
+    /**
+     * Tests that release notes are left untouched when composer.lock is unchanged.
+     */
+    public function testUpdateChangelogForReleaseNoChanges(): void
+    {
+        $client = $this->prophesize(Client::class);
+        $client->authenticate('authToken', null, Argument::any())
+            ->shouldBeCalled();
+        $releases = $this->prophesize(Releases::class);
+        $releases->all('test', 'test')
+            ->shouldBeCalled()
+            ->willReturn([
+                ['id' => 1, 'name' => 'dummy', 'tag_name' => 'head'],
+                ['id' => 2, 'name' => 'dummy', 'tag_name' => 'base'],
+            ]);
+        $releases->edit(Argument::cetera())
+            ->shouldNotBeCalled();
+        $commits = $this->prophesize(Commits::class);
+        $commits->compare('test', 'test', 'base', 'head')
+            ->shouldBeCalled()
+            ->willReturn([
+                'files' => [
+                    ['filename' => 'README.md'],
+                ],
+            ]);
+        $repo = $this->prophesize(Repo::class);
+        $repo->commits()->willReturn($commits->reveal());
+        $repo->releases()->willReturn($releases->reveal());
+        $client->repos()->willReturn($repo->reveal());
+
+        $sut = $this->getSut($client->reveal(), new ArrayAdapter());
+        $sut->updateChangelogForRelease('test', 'test', 'head');
+    }
+
+    /**
+     * Tests that pull request body is left untouched when composer.lock is unchanged.
+     */
+    public function testUpdateChangelogForPullRequestNoChanges(): void
+    {
+        $client = $this->prophesize(Client::class);
+        $client->authenticate('authToken', null, Argument::any())
+            ->shouldBeCalled();
+        $commits = $this->prophesize(Commits::class);
+        $commits->compare('test', 'test', 'dev', 'update-configuration')
+            ->shouldBeCalled()
+            ->willReturn(['files' => []]);
+        $repo = $this->prophesize(Repo::class);
+        $repo->commits()->willReturn($commits->reveal());
+        $client->repos()->willReturn($repo->reveal());
+        $pullRequest = $this->prophesize(PullRequest::class);
+        $pullRequest->update(Argument::cetera())
+            ->shouldNotBeCalled();
+        $client->pullRequests()->willReturn($pullRequest->reveal());
+
+        $sut = $this->getSut($client->reveal(), new ArrayAdapter());
+        $sut->updateChangelogForPullRequest('test', 'test', 'dev', 'update-configuration', '1');
     }
 }
