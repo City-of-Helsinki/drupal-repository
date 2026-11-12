@@ -23,30 +23,88 @@ final class ReleaseNoteGenerator implements ReleaseNoteGeneratorInterface
     ) {
     }
 
+    /**
+     * Creates a changelog entry for given repository and version range.
+     *
+     * This is built from the 'compare' API instead of the 'generate release
+     * notes' API, because the latter requires write access to the repository.
+     */
     private function createNote(string $username, string $repository, array $version): ? string
     {
         $key = $this->getCacheKey('create-note', $username, $repository, $version['base'], $version['head']);
 
         return $this->cache->get($key, function (ItemInterface $item) use ($username, $repository, $version) {
-            $note = $this
+            ['base' => $base, 'head' => $head] = $version;
+
+            $compare = $this
                 ->client
                 ->repos()
-                ->releases()
-                ->generateNotes($username, $repository, [
-                    'previous_tag_name' => $version['base'],
-                    'target_commitish' => $version['head'],
-                    'tag_name' => $version['head'],
-                ]);
+                ->commits()
+                ->compare($username, $repository, $base, $head);
+
             // Cache for 60 seconds, so we don't unnecessarily loop the GitHub API when
             // automation updates all our projects at once.
             $item->expiresAfter(60);
 
-            return "## [$username/$repository](https://github.com/$username/$repository): " .
-                "{$version['base']} to {$version['head']}\n" .
-                // Convert previous h2 to h3.
-                str_replace('##', '###', $note['body']) .
-                "\n";
+            $url = "https://github.com/$username/$repository";
+            $changes = $this->parseChanges($compare['commits'] ?? [], $url);
+
+            $note = "## [$username/$repository]($url): $base to $head\n";
+
+            if ($changes) {
+                $note .= "### What's Changed\n" . implode("\n", $changes) . "\n\n";
+            }
+            return $note . "**Full Changelog**: $url/compare/$base...$head\n";
         });
+    }
+
+    /**
+     * Parses a list of changes from given commits.
+     *
+     * Lists pull requests, merged either with a merge commit or squashed. If
+     * there are none, falls back to listing non-merge commits.
+     *
+     * @param array<int, array{commit?: array{message?: string}, parents?: array<mixed>}> $commits
+     *   The commits, as returned by the 'compare' API (oldest first).
+     * @param string $url
+     *   The repository URL.
+     *
+     * @return string[]
+     *   The changes, newest first.
+     */
+    private function parseChanges(array $commits, string $url): array
+    {
+        $pullRequests = $commitMessages = [];
+
+        foreach (array_reverse($commits) as $commit) {
+            $lines = array_values(array_filter(
+                array_map('trim', explode("\n", $commit['commit']['message'] ?? '')),
+                fn (string $line) => $line !== '',
+            ));
+
+            if (!$lines) {
+                continue;
+            }
+            [$subject] = $lines;
+
+            // Merge commit: "Merge pull request #123 from org/branch\n\nTitle".
+            if (preg_match('/^Merge pull request #(\d+) from (\S+)/', $subject, $matches)) {
+                $title = $lines[1] ?? $matches[2];
+                $pullRequests[] = "* $title in $url/pull/$matches[1]";
+                continue;
+            }
+            // Squash merge: "Title (#123)".
+            if (preg_match('/^(.+) \(#(\d+)\)$/', $subject, $matches)) {
+                $pullRequests[] = "* $matches[1] in $url/pull/$matches[2]";
+                continue;
+            }
+            // Skip other merge commits, such as "Merge branch 'main' into X".
+            if (count($commit['parents'] ?? []) > 1) {
+                continue;
+            }
+            $commitMessages[] = "* $subject";
+        }
+        return $pullRequests ?: $commitMessages;
     }
 
     private function getComposerPackageVersions(string $username, $repository, string $reference): array

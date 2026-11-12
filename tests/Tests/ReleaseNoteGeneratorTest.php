@@ -100,13 +100,8 @@ class ReleaseNoteGeneratorTest extends TestCase
             ]);
         $releases->edit('test', 'test', 1, Argument::any())
             ->shouldBeCalled();
-        $releases->generateNotes('test', 'test', [
-            'previous_tag_name' => 'base',
-            'target_commitish' => 'head',
-            'tag_name' => 'head',
-        ])
-            ->shouldBeCalled()
-            ->willReturn(['body' => '']);
+        $releases->generateNotes(Argument::cetera())
+            ->shouldNotBeCalled();
 
         $commits = $this->prophesize(Commits::class);
         $commits->compare('test', 'test', 'base', 'head')
@@ -115,6 +110,7 @@ class ReleaseNoteGeneratorTest extends TestCase
                 'files' => [
                     ['filename' => 'composer.lock'],
                 ],
+                'commits' => [],
             ]);
         $repo = $this->prophesize(Repo::class);
         $repo->commits()
@@ -210,5 +206,86 @@ class ReleaseNoteGeneratorTest extends TestCase
 
         $sut = $this->getSut($client->reveal(), new ArrayAdapter());
         $sut->updateChangelogForPullRequest('test', 'test', 'dev', 'update-configuration', '1');
+    }
+
+    /**
+     * Tests that changelog is built from pull requests between package versions.
+     */
+    public function testUpdateChangelogForPullRequest(): void
+    {
+        $package = (object) [
+            'name' => 'drupal/hdbt',
+            'extra' => (object) ['username' => 'org', 'repository' => 'hdbt'],
+        ];
+        $commit = fn (string $message, int $parents = 1) => [
+            'commit' => ['message' => $message],
+            'parents' => array_fill(0, $parents, []),
+        ];
+
+        $client = $this->prophesize(Client::class);
+        $client->authenticate('authToken', null, Argument::any())
+            ->shouldBeCalled();
+
+        $commits = $this->prophesize(Commits::class);
+        $commits->compare('test', 'test', 'dev', 'update-configuration')
+            ->shouldBeCalled()
+            ->willReturn(['files' => [['filename' => 'composer.lock']]]);
+        $commits->compare('org', 'hdbt', '1.0.0', '1.1.0')
+            ->shouldBeCalled()
+            ->willReturn([
+                'commits' => [
+                    $commit('UHF-1: Work in progress'),
+                    $commit("Merge branch 'main' into UHF-1", 2),
+                    $commit("Merge pull request #10 from org/UHF-1\n\nUHF-1: Add feature", 2),
+                    $commit('Fix typo (#11)'),
+                ],
+            ]);
+        $contents = $this->prophesize(Contents::class);
+        $contents->rawDownload('test', 'test', 'composer.lock', 'dev')
+            ->willReturn(json_encode(['packages' => [['name' => 'drupal/hdbt', 'version' => '1.0.0']]]));
+        $contents->rawDownload('test', 'test', 'composer.lock', 'update-configuration')
+            ->willReturn(json_encode(['packages' => [['name' => 'drupal/hdbt', 'version' => '1.1.0']]]));
+
+        $repo = $this->prophesize(Repo::class);
+        $repo->commits()->willReturn($commits->reveal());
+        $repo->contents()->willReturn($contents->reveal());
+        $client->repos()->willReturn($repo->reveal());
+
+        $expected = "\n## [org/hdbt](https://github.com/org/hdbt): 1.0.0 to 1.1.0\n" .
+            "### What's Changed\n" .
+            "* Fix typo in https://github.com/org/hdbt/pull/11\n" .
+            "* [UHF-1](https://helsinkisolutionoffice.atlassian.net/browse/UHF-1): Add feature in https://github.com/org/hdbt/pull/10\n" .
+            "\n" .
+            "**Full Changelog**: https://github.com/org/hdbt/compare/1.0.0...1.1.0\n";
+
+        $pullRequest = $this->prophesize(PullRequest::class);
+        $pullRequest->update('test', 'test', '1', ['body' => $expected])
+            ->shouldBeCalled();
+        $client->pullRequests()->willReturn($pullRequest->reveal());
+
+        $sut = new ReleaseNoteGenerator(
+            $client->reveal(),
+            new ArrayAdapter(),
+            'authToken',
+            ['drupal/hdbt' => $package],
+        );
+        $sut->updateChangelogForPullRequest('test', 'test', 'dev', 'update-configuration', '1');
+    }
+
+    /**
+     * Tests that commits are listed when there are no pull requests.
+     */
+    public function testParseChangesFallsBackToCommits(): void
+    {
+        $sut = $this->getSut($this->prophesize(Client::class)->reveal());
+        $method = new \ReflectionMethod($sut, 'parseChanges');
+        $this->assertSame(
+            ['* Second', '* First'],
+            $method->invoke($sut, [
+                ['commit' => ['message' => "First\n\nbody"], 'parents' => [[]]],
+                ['commit' => ['message' => "Merge branch 'a' into b"], 'parents' => [[], []]],
+                ['commit' => ['message' => 'Second'], 'parents' => [[]]],
+            ], 'https://github.com/org/repo'),
+        );
     }
 }
