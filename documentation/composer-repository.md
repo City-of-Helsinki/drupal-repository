@@ -22,9 +22,7 @@ Your package must contain a valid `composer.json` file.
 
 ## Publication times
 
-Every package version has a `published-time` field, so projects can use Composer's [cooldown](https://getcomposer.org/doc/06-config.md#cooldown) setting with this repository.
-
-Satis sets it to the time a version first appears in a build and reads it back from the previous build's `dist/p2` files. This is why the `dist` directory must persist between builds: if it's lost, every version is treated as newly published and held back for the cooldown period.
+Package versions include a `published-time` for Composer's [cooldown](https://getcomposer.org/doc/06-config.md#cooldown) policy. It's stored in the `dist` directory, so `dist` must persist between builds.
 
 ## Webhooks
 
