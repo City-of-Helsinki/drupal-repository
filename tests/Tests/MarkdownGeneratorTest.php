@@ -23,7 +23,7 @@ class MarkdownGeneratorTest extends TestCase
 
     public static function markdownData(): array
     {
-        // @codingStandardsIgnoreStart
+        // phpcs:disable
         return [
             [
                 // Given markdown.
@@ -87,6 +87,6 @@ class MarkdownGeneratorTest extends TestCase
 **Full Changelog**: https://github.com/City-of-Helsinki/drupal-helfi-platform-config/compare/2.15.0...2.15.1",
             ],
         ];
-        // @codingStandardsIgnoreEnd
+        // phpcs:enable
     }
 }
