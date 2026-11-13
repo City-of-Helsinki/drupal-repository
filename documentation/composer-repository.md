@@ -20,6 +20,10 @@ Your package must contain a valid `composer.json` file.
 - Add your package to [satis.json](/satis.json) file.
 - Add the required Webhook. See [Webhooks](#webhooks)
 
+## Publication times
+
+Package versions include a `published-time` for Composer's [cooldown](https://getcomposer.org/doc/06-config.md#cooldown) policy. It's stored in the `dist` directory, so `dist` must persist between builds.
+
 ## Webhooks
 
 In order for composer to figure out what packages have changed, the package index needs to be rebuilt on every commit.
