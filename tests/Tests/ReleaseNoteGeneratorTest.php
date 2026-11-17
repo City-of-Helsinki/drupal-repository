@@ -242,9 +242,17 @@ class ReleaseNoteGeneratorTest extends TestCase
             ]);
         $contents = $this->prophesize(Contents::class);
         $contents->rawDownload('test', 'test', 'composer.lock', 'dev')
-            ->willReturn(json_encode(['packages' => [['name' => 'drupal/hdbt', 'version' => '1.0.0']]]));
+            ->willReturn(json_encode(['packages' => [[
+                'name' => 'drupal/hdbt',
+                'version' => '1.0.0',
+                'source' => ['url' => 'https://github.com/org/hdbt.git', 'reference' => str_repeat('a', 40)],
+            ]]]));
         $contents->rawDownload('test', 'test', 'composer.lock', 'update-configuration')
-            ->willReturn(json_encode(['packages' => [['name' => 'drupal/hdbt', 'version' => '1.1.0']]]));
+            ->willReturn(json_encode(['packages' => [[
+                'name' => 'drupal/hdbt',
+                'version' => '1.1.0',
+                'source' => ['url' => 'https://github.com/org/hdbt.git', 'reference' => str_repeat('b', 40)],
+            ]]]));
 
         $repo = $this->prophesize(Repo::class);
         $repo->commits()->willReturn($commits->reveal());
@@ -257,7 +265,12 @@ class ReleaseNoteGeneratorTest extends TestCase
             "* [UHF-1](https://helsinkisolutionoffice.atlassian.net/browse/UHF-1): " .
             "Add feature in https://github.com/org/hdbt/pull/10\n" .
             "\n" .
-            "**Full Changelog**: https://github.com/org/hdbt/compare/1.0.0...1.1.0\n";
+            "**Full Changelog**: https://github.com/org/hdbt/compare/1.0.0...1.1.0\n" .
+            "\n<details>\n<summary>All Composer updates (1)</summary>\n\n" .
+            "| Package | From | To | Diff |\n|---|---|---|---|\n" .
+            "| drupal/hdbt | 1.0.0 | 1.1.0 | [aaaaaaa...bbbbbbb](https://github.com/org/hdbt/compare/" .
+            str_repeat('a', 40) . '...' . str_repeat('b', 40) . ") |\n" .
+            "</details>\n";
 
         $pullRequest = $this->prophesize(PullRequest::class);
         $pullRequest->update('test', 'test', '1', ['body' => $expected])

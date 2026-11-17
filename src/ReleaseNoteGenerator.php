@@ -15,6 +15,13 @@ final class ReleaseNoteGenerator implements ReleaseNoteGeneratorInterface
     use MarkdownProcessorTrait;
     use CacheTrait;
 
+    /**
+     * The maximum length of the changelog.
+     *
+     * GitHub limits pull request bodies to 65536 characters.
+     */
+    private const MAX_BODY_LENGTH = 65000;
+
     public function __construct(
         private readonly Client $client,
         private readonly CacheInterface $cache,
@@ -107,54 +114,47 @@ final class ReleaseNoteGenerator implements ReleaseNoteGeneratorInterface
         return $pullRequests ?: $commitMessages;
     }
 
-    private function getComposerPackageVersions(string $username, $repository, string $reference): array
+    /**
+     * @return array<string, mixed>
+     *   The decoded composer.lock file.
+     */
+    private function getComposerLock(string $username, string $repository, string $reference): array
     {
-        $key = $this->getCacheKey('package-versions', $username, $repository, $reference);
+        $key = $this->getCacheKey('composer-lock', $username, $repository, $reference);
 
         return $this->cache->get($key, function (ItemInterface $item) use ($username, $repository, $reference) {
             $data = $this->client
                 ->repos()
                 ->contents()
                 ->rawDownload($username, $repository, 'composer.lock', $reference);
-            $decoded = json_decode($data, true);
-
-            $packages = [];
-            foreach ($decoded['packages'] as $package) {
-                [
-                    'name' => $name,
-                    'version' => $version,
-                ] = $package + ['name' => null, 'version' => null];
-
-                // Ignore non-whitelisted packages.
-                if (!in_array($name, array_keys($this->allowedPackages))) {
-                    continue;
-                }
-                $packages[$name] = $version;
-            }
             // Cache for 60 seconds, so we don't unnecessarily loop the GitHub API when
             // automation updates all our projects at once.
             $item->expiresAfter(60);
 
-            return $packages;
+            return json_decode($data, true) ?: [];
         });
     }
 
-    private function getUpdatedDependencies(
-        string $username,
-        string $repository,
-        string $base,
-        string $head
-    ): array {
-        $previousVersions = $this->getComposerPackageVersions($username, $repository, $base);
-        $latestVersions = $this->getComposerPackageVersions($username, $repository, $head);
-
-        $diff = array_keys(array_diff($previousVersions, $latestVersions));
-
+    /**
+     * Gets the whitelisted packages whose version changed.
+     *
+     * @param array<string, array{from: ?array<string, mixed>, to: ?array<string, mixed>}> $changes
+     *   The changes, as returned by ComposerUpdates::diff().
+     *
+     * @return array<string, array{base: string, head: string}>
+     *   The versions, keyed by package name.
+     */
+    private function getUpdatedDependencies(array $changes): array
+    {
         $versions = [];
-        foreach ($diff as $name) {
+        foreach ($changes as $name => ['from' => $from, 'to' => $to]) {
+            // Ignore non-whitelisted, added and removed packages.
+            if (!isset($this->allowedPackages[$name], $from, $to) || $from['version'] === $to['version']) {
+                continue;
+            }
             $versions[$name] = [
-                'base' => $previousVersions[$name],
-                'head' => $latestVersions[$name],
+                'base' => $from['version'],
+                'head' => $to['version'],
             ];
         }
         return $versions;
@@ -205,10 +205,13 @@ final class ReleaseNoteGenerator implements ReleaseNoteGeneratorInterface
         }
         $changelog .= "\n";
 
-        // Create changelog for each updated dependency.
-        $versions = $this->getUpdatedDependencies($username, $repository, $previous, $latest);
+        $changes = ComposerUpdates::diff(
+            $this->getComposerLock($username, $repository, $previous),
+            $this->getComposerLock($username, $repository, $latest),
+        );
 
-        foreach ($versions as $name => $version) {
+        // Create changelog for each updated dependency.
+        foreach ($this->getUpdatedDependencies($changes) as $name => $version) {
             $package = $this->allowedPackages[$name];
 
             $changelog .= $this->createNote(
@@ -219,8 +222,10 @@ final class ReleaseNoteGenerator implements ReleaseNoteGeneratorInterface
         }
 
         $changelog = $this->processMarkdown($changelog);
+        // List all updated packages, as long as they fit in the body.
+        $changelog .= ComposerUpdates::toMarkdown($changes, self::MAX_BODY_LENGTH - strlen($changelog));
 
-        if (mb_strlen($changelog) < 1) {
+        if (mb_strlen(trim($changelog)) < 1) {
             return null;
         }
         return $changelog;
