@@ -268,7 +268,8 @@ class ReleaseNoteGeneratorTest extends TestCase
             "**Full Changelog**: https://github.com/org/hdbt/compare/1.0.0...1.1.0\n" .
             "\n<details>\n<summary>All Composer updates (1)</summary>\n\n" .
             "| Package | From | To | Diff |\n|---|---|---|---|\n" .
-            "| drupal/hdbt | 1.0.0 | 1.1.0 | [aaaaaaa...bbbbbbb](https://github.com/org/hdbt/compare/" .
+            "| [drupal/hdbt](https://github.com/org/hdbt) | 1.0.0 | 1.1.0 | " .
+            "[aaaaaaa...bbbbbbb](https://github.com/org/hdbt/compare/" .
             str_repeat('a', 40) . '...' . str_repeat('b', 40) . ") |\n" .
             "</details>\n";
 
