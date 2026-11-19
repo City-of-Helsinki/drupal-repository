@@ -4,6 +4,8 @@ The CLI tool fetches project's `composer.lock` for given `{head}` and `{base}` c
 
 The changelog generation is limited to modules with `whitelisted` set to `true` in [satis.json](/satis.json).
 
+All other updated Composer packages are listed in a collapsed table at the end, with a link to the diff between the two versions for packages hosted on GitHub or git.drupalcode.org.
+
 ## Generate a changelog for project releases
 
 See https://github.com/City-of-Helsinki/drupal-helfi-kymp/releases/tag/2024-02-28.1 for an example.
