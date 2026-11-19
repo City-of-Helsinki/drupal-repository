@@ -5,26 +5,26 @@ on:
         branches:
             - 3.x
 env:
-  GITHUB_OAUTH: $GITHUB_TOKEN
+  GITHUB_OAUTH: ${{ github.token }}
   COMPOSER_HOME: /tmp
 jobs:
     build:
         runs-on: ubuntu-latest
-        strategy:
-            fail-fast: false
-            matrix:
-                php-versions: ['8.5']
+        # Run in the production image, so tests use the same PHP and webhook versions.
+        container:
+            image: ghcr.io/city-of-helsinki/drupal-repository:latest
         steps:
+            - name: Install test dependencies
+              run: >-
+                  apk add --no-cache bash curl gnupg jq
+                  php85-dom php85-tokenizer php85-xml php85-xmlwriter php85-pecl-pcov
 
             - name: Checkout code
               uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-            - name: Setup PHP with composer v2
-              uses: shivammathur/setup-php@accd6127cb78bee3e8082180cb391013d204ef9f # 2.37.0
-              with:
-                  php-version: '${{ matrix.php-versions }}'
-                  coverage: pcov
-                  tools: composer:v2
+            # The checkout is owned by the runner user, but the container runs as root.
+            - name: Mark the workspace as safe for git
+              run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
             - name: Validate satis.json
               run: cat satis.json | jq type

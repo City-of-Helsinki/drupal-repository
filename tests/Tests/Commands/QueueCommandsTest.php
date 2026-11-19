@@ -51,6 +51,6 @@ class QueueCommandsTest extends TestCase
         ]);
         $output = $applicationTest->getDisplay();
         $this->assertStringContainsString('Processed 1 items.', $output);
-        $this->assertFileExists(self::TEST_FILENAME);
+        $this->assertFileExists(self::TEST_FILENAME, $output);
     }
 }
