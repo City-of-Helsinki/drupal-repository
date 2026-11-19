@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\ReleaseNoteGenerator;
+use App\ReleaseNoteGeneratorInterface;
 use App\Settings;
 use Enqueue\Fs\FsConnectionFactory;
 use Interop\Queue\Context;
@@ -115,6 +117,7 @@ foreach ($data->repositories as $item) {
 return [
     Context::class => (new FsConnectionFactory())->createContext(),
     CacheInterface::class => new FilesystemAdapter(defaultLifetime: 60),
+    ReleaseNoteGeneratorInterface::class => DI\get(ReleaseNoteGenerator::class),
     Settings::ENV => getenv('APP_ENV') ?: 'local',
     Settings::GITHUB_OAUTH => getenv('GITHUB_OAUTH') ?: '',
     Settings::CHANGELOG_PROJECTS => array_filter($projects, function (array $item) : bool {

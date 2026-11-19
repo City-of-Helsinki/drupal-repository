@@ -57,13 +57,19 @@ The following line should work with PHPStorm:
 
 - `PHP_IDE_CONFIG=serverName=app XDEBUG_SESSION_START=1 php console.php`
 
+## Tests
+
+Run the tests in the `app` container: `docker compose exec app vendor/bin/phpunit`
+
+`tests/Tests/HooksTest.php` runs [hooks.json](/hooks.json) on a real webhook server and checks which requests run which commands. It needs the `webhook` binary, so it's skipped outside the container.
+
 ## Test webhooks locally
 
 Base URL to Webhook server: https://helfi-webhook.docker.so
 
 1. Copy payload body from `Recent deliveries` webhook tab on GitHub (`Settings` -> `Webhooks` -> `Edit` -> `Recent deliveries`)
 2. Save the request body to a `body.json` file
-3. Generate an X-Hub-Signature for your request body: `php -r "print hash_hmac('sha1', file_get_contents('body.json'), '{your webhook secret key here}');"`
+3. Generate an X-Hub-Signature-256 for your request body: `php -r "print hash_hmac('sha256', file_get_contents('body.json'), '{your webhook secret key here}');"`
 4. Send the request using CURL
 
 ### Update index webhook
@@ -81,7 +87,7 @@ Example request:
 ```bash
 curl -i \
     -H 'Content-Type: application/json' \
-    -H "X-Hub-Signature: sha1={your hash_hmac from previous step }" \
+    -H "X-Hub-Signature-256: sha256={your hash_hmac from previous step }" \
     -X POST https://helfi-webhook.docker.so/hooks/update-index \
     --data-binary "@body.json"
 ```
@@ -97,7 +103,7 @@ Example request:
 ```bash
 curl -i \
     -H 'Content-Type: application/json' \
-    -H "X-Hub-Signature: sha1={your hash_hmac from previous step }" \
+    -H "X-Hub-Signature-256: sha256={your hash_hmac from previous step }" \
     -X POST https://helfi-webhook.docker.so/hooks/update-release-note \
     --data-binary "@body.json"
 ```
@@ -112,7 +118,7 @@ Example request:
 ```bash
 curl -i \
     -H 'Content-Type: application/json' \
-    -H "X-Hub-Signature: sha1={your hash_hmac from previous step }" \
+    -H "X-Hub-Signature-256: sha256={your hash_hmac from previous step }" \
     -X POST https://helfi-webhook.docker.so/hooks/update-automation-pull-request \
     --data-binary "@body.json"
 ```
@@ -127,7 +133,7 @@ Example request:
 ```bash
 curl -i \
     -H 'Content-Type: application/json' \
-    -H "X-Hub-Signature: sha1={your hash_hmac from previous step }" \
+    -H "X-Hub-Signature-256: sha256={your hash_hmac from previous step }" \
     -X POST https://helfi-webhook.docker.so/hooks/trigger-dispatch \
     --data-binary "@body.json"
 ```

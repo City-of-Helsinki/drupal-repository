@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Commands;
 
-use App\ReleaseNoteGenerator;
+use App\ReleaseNoteGeneratorInterface;
 use App\Settings;
 use DI\Attribute\Inject;
 use Symfony\Component\Console\Command\Command;
@@ -15,7 +15,7 @@ abstract class ChangelogGenerator extends Command
 {
 
     public function __construct(
-        protected ReleaseNoteGenerator $generator,
+        protected ReleaseNoteGeneratorInterface $generator,
         #[Inject(Settings::CHANGELOG_PROJECTS)] private readonly array $projects,
     ) {
         parent::__construct();

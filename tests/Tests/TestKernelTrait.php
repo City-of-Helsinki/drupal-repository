@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Tests;
 
 use App\Kernel;
+use App\ReleaseNoteGenerator;
+use App\ReleaseNoteGeneratorInterface;
 use App\Settings;
 use DI\Container;
 use DI\ContainerBuilder;
@@ -27,6 +29,7 @@ trait TestKernelTrait
         $container->addDefinitions([
             CacheInterface::class => new FilesystemAdapter(defaultLifetime: 60),
             Context::class => (new FsConnectionFactory())->createContext(),
+            ReleaseNoteGeneratorInterface::class => \DI\get(ReleaseNoteGenerator::class),
         ]);
         $container->addDefinitions($settings);
         return $container->build();
