@@ -173,6 +173,37 @@
                 "type": "value",
                 "value": "synchronize"
               }
+            },
+            {
+              "and": [
+                {
+                  "match":
+                  {
+                    "parameter":
+                    {
+                      "source": "payload",
+                      "name": "action"
+                    },
+                    "type": "value",
+                    "value": "edited"
+                  }
+                },
+                {
+                  "not":
+                  {
+                    "match":
+                    {
+                      "parameter":
+                      {
+                        "source": "payload",
+                        "name": "pull_request.body"
+                      },
+                      "type": "regex",
+                      "regex": "^\\s*## \\["
+                    }
+                  }
+                }
+              ]
             }
           ]
         }
