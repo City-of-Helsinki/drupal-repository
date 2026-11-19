@@ -5,7 +5,7 @@ on:
         branches:
             - 3.x
 env:
-  GITHUB_OAUTH: $GITHUB_TOKEN
+  GITHUB_OAUTH: ${{ github.token }}
   COMPOSER_HOME: /tmp
 jobs:
     build:
