@@ -70,9 +70,10 @@ final class ComposerUpdates
         $rows = '';
         $shown = 0;
         foreach ($changes as $name => ['from' => $from, 'to' => $to]) {
+            $repository = self::getRepositoryUrl($to ?? $from ?? []);
             $row = sprintf(
                 "| %s | %s | %s | %s |\n",
-                $name,
+                $repository ? "[$name]($repository)" : $name,
                 $from['version'] ?? '–',
                 $to['version'] ?? '–',
                 $from && $to ? self::getDiffLink($from, $to) : '',
@@ -105,23 +106,41 @@ final class ComposerUpdates
      */
     public static function getDiffLink(array $from, array $to): string
     {
-        $url = $to['source']['url'] ?? null;
+        $repository = self::getRepositoryUrl($to);
         $old = self::getReference($from);
         $new = self::getReference($to);
 
         // A link can't be built if the package moved to another repository.
-        if (!$url || !$old || !$new || $url !== ($from['source']['url'] ?? null)) {
+        if (!$repository || !$old || !$new || $repository !== self::getRepositoryUrl($from)) {
             return '';
         }
+        $separator = str_starts_with($repository, 'https://github.com/') ? '' : '/-';
+        $diffUrl = "$repository$separator/compare/$old...$new";
+
+        return sprintf('[%s...%s](%s)', self::shorten($old), self::shorten($new), $diffUrl);
+    }
+
+    /**
+     * Gets the web URL of a package's source repository.
+     *
+     * @param array<string, mixed> $package
+     *   The package.
+     *
+     * @return string|null
+     *   The URL, or null if the package isn't hosted on GitHub or
+     *   git.drupalcode.org.
+     */
+    public static function getRepositoryUrl(array $package): ?string
+    {
+        $url = $package['source']['url'] ?? '';
 
         if (preg_match('#^(?:https://|git@)github\.com[/:]([^/]+/[^/]+?)(?:\.git)?$#', $url, $matches)) {
-            $diffUrl = "https://github.com/$matches[1]/compare/$old...$new";
-        } elseif (preg_match('#^https://git\.drupalcode\.org/(.+?)(?:\.git)?$#', $url, $matches)) {
-            $diffUrl = "https://git.drupalcode.org/$matches[1]/-/compare/$old...$new";
-        } else {
-            return '';
+            return "https://github.com/$matches[1]";
         }
-        return sprintf('[%s...%s](%s)', self::shorten($old), self::shorten($new), $diffUrl);
+        if (preg_match('#^https://git\.drupalcode\.org/(.+?)(?:\.git)?$#', $url, $matches)) {
+            return "https://git.drupalcode.org/$matches[1]";
+        }
+        return null;
     }
 
     /**

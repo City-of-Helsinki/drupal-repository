@@ -112,13 +112,38 @@ class ComposerUpdatesTest extends TestCase
         ));
     }
 
+    /**
+     * @return array<string, array{string, ?string}>
+     */
+    public static function repositoryUrlProvider(): array
+    {
+        return [
+            'github https' => ['https://github.com/composer/semver.git', 'https://github.com/composer/semver'],
+            'github ssh' => [
+                'git@github.com:City-of-Helsinki/drupal-hdbt.git',
+                'https://github.com/City-of-Helsinki/drupal-hdbt',
+            ],
+            'drupal.org' => ['https://git.drupalcode.org/project/key.git', 'https://git.drupalcode.org/project/key'],
+            'unknown host' => ['https://example.com/vendor/package.git', null],
+        ];
+    }
+
+    #[DataProvider('repositoryUrlProvider')]
+    public function testGetRepositoryUrl(string $url, ?string $expected): void
+    {
+        $this->assertSame($expected, ComposerUpdates::getRepositoryUrl(
+            $this->package('vendor/package', '1.0.0', 'aaa', $url),
+        ));
+        $this->assertNull(ComposerUpdates::getRepositoryUrl($this->package('vendor/package', '1.0.0')));
+    }
+
     public function testToMarkdown(): void
     {
         $this->assertSame('', ComposerUpdates::toMarkdown([], 1000));
 
         $markdown = ComposerUpdates::toMarkdown([
             'vendor/added' => ['from' => null, 'to' => $this->package('vendor/added', '1.0.0')],
-            'vendor/removed' => ['from' => $this->package('vendor/removed', '1.0.0'), 'to' => null],
+            'vendor/removed' => ['from' => $this->package('vendor/removed', '1.0.0', 'aaa'), 'to' => null],
             'vendor/updated' => [
                 'from' => $this->package('vendor/updated', '1.0.0', '1.0.0'),
                 'to' => $this->package('vendor/updated', '1.1.0', '1.1.0'),
@@ -129,8 +154,8 @@ class ComposerUpdatesTest extends TestCase
             "\n<details>\n<summary>All Composer updates (3)</summary>\n\n" .
             "| Package | From | To | Diff |\n|---|---|---|---|\n" .
             "| vendor/added | – | 1.0.0 |  |\n" .
-            "| vendor/removed | 1.0.0 | – |  |\n" .
-            "| vendor/updated | 1.0.0 | 1.1.0 | " .
+            "| [vendor/removed](https://github.com/vendor/removed) | 1.0.0 | – |  |\n" .
+            "| [vendor/updated](https://github.com/vendor/updated) | 1.0.0 | 1.1.0 | " .
             "[1.0.0...1.1.0](https://github.com/vendor/updated/compare/1.0.0...1.1.0) |\n" .
             "</details>\n",
             $markdown,
